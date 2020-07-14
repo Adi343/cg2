@@ -20,7 +20,7 @@ function Messages() {
   const classes = useStyles();
   const ChatItems = ["Hi", "Hey", "what up!"];
   const [chat, setChat] = React.useState("");
-  const [chatItems, setChatItems] = useState(ChatItems);
+  const [chatItems, setChatItems] = useState([...ChatItems]);
 
   useEffect(() => {
     console.log("chat updated");
@@ -38,8 +38,9 @@ function Messages() {
     <div>
       <Paper variant="outlined" className={classes.chatBox}>
         <h1>Chat!</h1>
-        {chatItems.map((item) => (
-          <li>{item}</li>
+
+        {ChatItems.map((item, index) => (
+          <li key="index">{item}</li>
         ))}
       </Paper>
 
@@ -51,7 +52,6 @@ function Messages() {
         />
         <Button onClick={handleSubmit}>Send</Button>
       </form>
-      <Button onClick={showChat}>CHAT OP!</Button>
     </div>
   );
 }
