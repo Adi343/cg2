@@ -2,15 +2,26 @@ import React, { useState, useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
+import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/styles";
 import { red } from "@material-ui/core/colors";
+import { Typography } from "@material-ui/core";
 
 const styles = {
+  title: {
+    backgroundColor: "#ffffff",
+    margin: "10px",
+  },
   chatBox: {
-    backgroundColor: "#c4c0c1",
+    backgroundColor: "#c4c4c4",
     color: red,
-    width: "500px",
+    display: "flex",
     height: "500px",
+    flexDirection: "column",
+  },
+  chat: {
+    backgroundColor: "#696969",
+    flexGrow: 1,
   },
 };
 
@@ -37,21 +48,25 @@ function Messages() {
   return (
     <div>
       <Paper variant="outlined" className={classes.chatBox}>
-        <h1>Chat!</h1>
-
-        {ChatItems.map((item, index) => (
-          <li key="index">{item}</li>
-        ))}
+        <Typography className={classes.title} variant="h3">
+          CHAT
+        </Typography>
+        <Container className={classes.chat}>
+          <ul>
+            {ChatItems.map((item, index) => (
+              <li key="index">{item}</li>
+            ))}
+          </ul>
+        </Container>
+        <form>
+          <TextField
+            placeholder="Type message op!"
+            type="text"
+            onChange={(e) => setChat(e.target.value)}
+          />
+          <Button onClick={handleSubmit}>Send</Button>
+        </form>
       </Paper>
-
-      <form>
-        <TextField
-          placeholder="Type message op!"
-          type="text"
-          onChange={(e) => setChat(e.target.value)}
-        />
-        <Button onClick={handleSubmit}>Send</Button>
-      </form>
     </div>
   );
 }
