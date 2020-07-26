@@ -13,7 +13,7 @@ function Block(props) {
   } else {
     return (
       <div>
-        <AccountCircle />
+        <AccountCircle fontSize="large" />
       </div>
     );
   }
