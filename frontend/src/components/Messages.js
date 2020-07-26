@@ -6,6 +6,7 @@ import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/styles";
 import { red } from "@material-ui/core/colors";
 import { Typography } from "@material-ui/core";
+import Block from "./Block";
 
 const styles = {
   title: {
@@ -47,6 +48,7 @@ function Messages() {
   };
   return (
     <div>
+      <Block signIn={false} />
       <Paper variant="outlined" className={classes.chatBox}>
         <Typography className={classes.title} variant="h3">
           CHAT
