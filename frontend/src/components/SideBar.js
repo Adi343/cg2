@@ -30,8 +30,7 @@ import Messages from "./Messages";
 import Feed from "./Feed";
 import Classes from "./Classes";
 import { red } from "@material-ui/core/colors";
-import SignUpDialog from "./SignUpDialog";
-import SignInDialog from "./SignInDialog";
+import Block from "./Block";
 const drawerWidth = 200;
 
 const useStyles = makeStyles((theme) => ({
@@ -222,8 +221,7 @@ function SideBar(props) {
               placeholder="Search"
               className={classes.searchBox}
             />
-            <SignInDialog />
-            <SignUpDialog />
+            <Block signIn={false} />
           </Toolbar>
         </AppBar>
       </ThemeProvider>
