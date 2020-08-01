@@ -168,7 +168,7 @@ function SideBar(props) {
   }
 
   const createStream = (e) => {
-    alert("create stream clicked!");
+    
   };
 
   const drawer = (
