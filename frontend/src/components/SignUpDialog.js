@@ -71,7 +71,6 @@ export default function SignUpDialog() {
         <DialogTitle id="form-dialog-title">Sign Up!</DialogTitle>
         <DialogContent>
           <TextField
-            autoFocus
             margin="dense"
             id="name"
             label="username"

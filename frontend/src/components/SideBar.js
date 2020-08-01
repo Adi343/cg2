@@ -16,6 +16,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
+import AddCircleIcon from "@material-ui/icons/AddCircle";
 import {
   makeStyles,
   useTheme,
@@ -166,6 +167,10 @@ function SideBar(props) {
     }
   }
 
+  const createStream = (e) => {
+    alert("create stream clicked!");
+  };
+
   const drawer = (
     <div>
       <div className={classes.toolbar} />
@@ -212,7 +217,6 @@ function SideBar(props) {
             >
               <MenuIcon />
             </IconButton>
-
             <Typography variant="h5" noWrap className={classes.title}>
               CollegeGram
             </Typography>
@@ -221,6 +225,7 @@ function SideBar(props) {
               placeholder="Search"
               className={classes.searchBox}
             />
+            <Button onClick={createStream}>Create Stream</Button>
             <Block signIn={false} />
           </Toolbar>
         </AppBar>

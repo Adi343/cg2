@@ -8,7 +8,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
-
+const axios = require("axios").default;
 export default function SignInDialog() {
   const theme = createMuiTheme({
     pallete: {
@@ -37,12 +37,23 @@ export default function SignInDialog() {
   };
 
   const handleClose = () => {
+    let url = "/signIn/" + userName;
     setOpen(false);
+
+    axios
+      .get(url)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .then(() => {});
   };
 
   const handleSubmit = () => {
     setOpen(false);
-    console.log("userName is ", userName, " passWord is ", password);
+    //console.log("userName is ", userName, " passWord is ", password);
   };
 
   return (
@@ -58,7 +69,6 @@ export default function SignInDialog() {
         <DialogTitle id="form-dialog-title">Sign In!</DialogTitle>
         <DialogContent>
           <TextField
-            autoFocus
             margin="dense"
             id="name"
             label="username"

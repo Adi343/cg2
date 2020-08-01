@@ -29,7 +29,7 @@ router.get("/:name", (req, res) => {
       if (err) {
         res.send("error");
       }
-      res.json(user);
+      res.send("userExists");
     });
 });
 
