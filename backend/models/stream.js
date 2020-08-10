@@ -12,3 +12,5 @@ const streamSchema = new Mongoose.Schema({
     required: true,
   },
 });
+
+module.exports = mongoose.model("stream", streamSchema, "streams");

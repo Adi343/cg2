@@ -12,6 +12,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 import Axios from "axios";
+import BuildIcon from "@material-ui/icons/Build";
 
 function CreateStreamDialog() {
   const [open, setOpen] = React.useState(false);
@@ -23,6 +24,10 @@ function CreateStreamDialog() {
     setOpen(true);
   };
 
+  const handleSubmit = () => {
+    console.log("handle submit called!");
+  };
+
   const handleClose = () => {
     setOpen(false);
   };
@@ -30,9 +35,10 @@ function CreateStreamDialog() {
   const handleName = () => {};
   return (
     <div>
-      <Button variant="outlined" onclick={handleClickOpen}>
+      {/* <Button variant="outlined" onClick={handleClickOpen}>
         CreateStream
-      </Button>
+      </Button> */}
+      <BuildIcon onClick={handleClickOpen} />
       <Dialog
         open={open}
         onClose={handleClose}
@@ -54,7 +60,7 @@ function CreateStreamDialog() {
             Cancel
           </Button>
           <Button onClick={handleClose} variant="contained" color="primary">
-            Let's go!
+            Create
           </Button>
         </DialogActions>
       </Dialog>
