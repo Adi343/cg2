@@ -17,6 +17,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
+//import CreateStreamDialog from "./createStreamDialog";
 import {
   makeStyles,
   useTheme,
@@ -32,6 +33,7 @@ import Feed from "./Feed";
 import Classes from "./Classes";
 import { red } from "@material-ui/core/colors";
 import Block from "./Block";
+import CreateStreamDialog from "./createStreamDialog";
 const drawerWidth = 200;
 
 const useStyles = makeStyles((theme) => ({
@@ -167,9 +169,7 @@ function SideBar(props) {
     }
   }
 
-  const createStream = (e) => {
-    
-  };
+  const createStream = (e) => {};
 
   const drawer = (
     <div>
@@ -225,7 +225,7 @@ function SideBar(props) {
               placeholder="Search"
               className={classes.searchBox}
             />
-            <Button onClick={createStream}>Create Stream</Button>
+            <CreateStreamDialog />
             <Block signIn={false} />
           </Toolbar>
         </AppBar>

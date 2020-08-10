@@ -13,18 +13,21 @@ import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 import Axios from "axios";
 
-function createStreamDialog() {
+function CreateStreamDialog() {
   const [open, setOpen] = React.useState(false);
 
   const [name, setName] = React.useState("");
 
   const handleClickOpen = () => {
+    console.log("button pressed!");
     setOpen(true);
   };
 
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleName = () => {};
   return (
     <div>
       <Button variant="outlined" onclick={handleClickOpen}>
@@ -59,4 +62,4 @@ function createStreamDialog() {
   );
 }
 
-export default createStreamDialog;
+export default CreateStreamDialog;
