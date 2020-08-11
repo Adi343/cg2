@@ -4,6 +4,7 @@ const app = express();
 const user = require("./models/userModel");
 const auth = require("./routes/auth");
 const signIn = require("./routes/signIn");
+const streamRoute = require("./routes/streamRoute");
 const { MONGOURI } = require("./keys.js");
 var http = require("http").Server(app);
 var io = require("socket.io")(http);
@@ -37,5 +38,6 @@ io.on("connection", function (socket) {
 });
 app.use("/signup", auth);
 app.use("/signIn", signIn);
+app.use("/stream", streamRoute);
 
 app.listen(port, () => console.log("app is listening at port " + port));
