@@ -7,10 +7,10 @@ const streamSchema = new mongoose.Schema({
     requires: true,
   },
 
-  accountType: {
+  /*accountType: {
     type: String,
     required: true,
-  },
+  },*/
 });
 
 module.exports = mongoose.model("stream", streamSchema, "streams");

@@ -27,7 +27,7 @@ app.get("/", (req, res) => {
       console.log("A user disconnected");
     });
   });*/
-  res.send("Hello World!");
+  res.send("Welcome to japan!");
 });
 
 io.on("connection", function (socket) {
