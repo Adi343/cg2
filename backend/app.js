@@ -9,7 +9,6 @@ const { MONGOURI } = require("./keys.js");
 var http = require("http").Server(app);
 var io = require("socket.io")(http);
 var path = require("path");
-const cookieParser = require("cookie-parser");
 var cookieParser = require("cookie-parser");
 const { nextTick } = require("process");
 
@@ -44,12 +43,12 @@ app.get("/", (req, res) => {
   nextTick();
 });
 
-io.on("connection", function (socket) {
-  socket.emit("news", { hello: "world" });
-  socket.on("my other event", function (data) {
-    console.log(data);
-  });
-});
+// io.on("connection", function (socket) {
+//   socket.emit("news", { hello: "world" });
+//   socket.on("my other event", function (data) {
+//     console.log(data);
+//   });
+// });
 app.use("/signup", auth);
 app.use("/signIn", signIn);
 app.use("/stream", streamRoute);
