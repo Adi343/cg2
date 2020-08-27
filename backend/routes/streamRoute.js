@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const stream = require("../models/stream");
 let router = express.Router();
-const authJwt = require("authenticateJwt");
+const authJwt = require("./authenticateJwt");
 
 router.get("/", authJwt, (req, res) => {
   res.send("Inside stream get route");

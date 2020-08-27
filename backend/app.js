@@ -49,6 +49,7 @@ app.get("/", (req, res) => {
 //     console.log(data);
 //   });
 // });
+
 app.use("/signup", auth);
 app.use("/signIn", signIn);
 app.use("/stream", streamRoute);
