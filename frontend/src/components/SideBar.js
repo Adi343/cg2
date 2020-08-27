@@ -98,10 +98,19 @@ function SideBar(props) {
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [comp, changeComp] = React.useState(0);
-  //const [signUp, setSignUp] = React.useState(false);
+  const [signIn, setSignIn] = React.useState(false);
+
+  useEffect(() => {
+    if (localStorage.getItem("jwt") == "") {
+      setSignIn(false);
+    } else {
+      setSignIn(true);
+    }
+    console.log("signIn is ", signIn);
+  });
 
   function ChangeComponent(i) {
-    console.log("i value is " + i);
+    //console.log("i value is " + i);
     switch (i) {
       case 0:
         return <Feed />;
@@ -169,6 +178,14 @@ function SideBar(props) {
     }
   }
 
+  // const setSignIn = (status) => {
+  //   if (status) {
+  //     signIn = true;
+  //   } else {
+  //     signIn = false;
+  //   }
+  // };
+
   const createStream = (e) => {};
 
   const drawer = (
@@ -226,7 +243,10 @@ function SideBar(props) {
               className={classes.searchBox}
             />
             <CreateStreamDialog />
-            <Block signIn={false} />
+            {/* {localStorage.getItem("jwt") == ""
+              ? setSignIn(false)
+              : setSignIn(true)} */}
+            <Block signIn={signIn} />
           </Toolbar>
         </AppBar>
       </ThemeProvider>
