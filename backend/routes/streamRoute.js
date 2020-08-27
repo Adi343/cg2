@@ -4,7 +4,7 @@ const stream = require("../models/stream");
 let router = express.Router();
 const authJwt = require("./authenticateJwt");
 
-router.get("/", authJwt, (req, res) => {
+router.get("/", (req, res) => {
   res.send("Inside stream get route");
 });
 router.post("/", (req, res) => {
@@ -23,7 +23,7 @@ router.post("/", (req, res) => {
   });
 });
 router.post("/:name", (req, res) => {
-  var Name = req.body.name;
+  var Name = req.params.name;
 
   var newStream = new stream({ name: Name });
 

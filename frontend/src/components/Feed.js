@@ -30,7 +30,7 @@ function Feed() {
 
   useEffect(() => {
     getData();
-    console.log("use effect called!");
+    //console.log("use effect called!");
     console.log(users);
   }, []);
 

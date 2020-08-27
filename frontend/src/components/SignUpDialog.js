@@ -33,7 +33,10 @@ export default function SignUpDialog() {
       password: password,
       accountType: accountType,
     })
-      .then((response) => console.log(response))
+      .then((response) => {
+        console.log(response);
+        localStorage.setItem("jwt", response.token);
+      })
       .catch((error) => console.log(error));
     setOpen(false);
   };

@@ -101,7 +101,9 @@ function SideBar(props) {
   const [signIn, setSignIn] = React.useState(false);
 
   useEffect(() => {
-    if (localStorage.getItem("jwt") == "") {
+    console.log("SideBar useEffect called!");
+    console.log("localStorage.getItem(jwt)", localStorage.getItem("jwt"));
+    if (localStorage.getItem("jwt") == null) {
       setSignIn(false);
     } else {
       setSignIn(true);

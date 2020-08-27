@@ -20,19 +20,21 @@ function CreateStreamDialog() {
   const [name, setName] = React.useState("");
 
   const handleClickOpen = () => {
-    console.log("button pressed!");
+    //console.log("button pressed!");
     setOpen(true);
   };
 
   const handleSubmit = () => {
-    console.log("handle submit called!");
+    //console.log("handle submit called!");
   };
 
   const handleClose = () => {
     setOpen(false);
   };
 
-  const handleName = () => {};
+  const handleName = (e) => {
+    setName(e.target.value);
+  };
   return (
     <div>
       {/* <Button variant="outlined" onClick={handleClickOpen}>
@@ -59,7 +61,7 @@ function CreateStreamDialog() {
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleClose} variant="contained" color="primary">
+          <Button onClick={handleSubmit} variant="contained" color="primary">
             Create
           </Button>
         </DialogActions>
