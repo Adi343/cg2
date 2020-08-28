@@ -102,10 +102,12 @@ function SideBar(props) {
 
   useEffect(() => {
     console.log("SideBar useEffect called!");
-    console.log("localStorage.getItem(jwt)", localStorage.getItem("jwt"));
-    if (localStorage.getItem("jwt") == null) {
+    const token = localStorage.getItem("jwt");
+    console.log("localStorage.getItem(jwt)", token);
+
+    if (token == null || token == undefined) {
       setSignIn(false);
-    } else {
+    } else if (token != null && token != undefined) {
       setSignIn(true);
     }
     console.log("signIn is ", signIn);

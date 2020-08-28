@@ -36,6 +36,7 @@ export default function SignUpDialog() {
       .then((response) => {
         console.log(response);
         localStorage.setItem("jwt", response.token);
+        console.log("localStorage.getItem(jwt)", localStorage.getItem("jwt"));
       })
       .catch((error) => console.log(error));
     setOpen(false);
