@@ -99,19 +99,24 @@ function SideBar(props) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [comp, changeComp] = React.useState(0);
   const [signIn, setSignIn] = React.useState(false);
+  var token = localStorage.getItem("jwt");
 
   useEffect(() => {
     console.log("SideBar useEffect called!");
-    const token = localStorage.getItem("jwt");
-    console.log("localStorage.getItem(jwt)", token);
 
-    if (token == null || token == undefined) {
-      setSignIn(false);
-    } else if (token != null && token != undefined) {
+    //console.log("localStorage.getItem(jwt)", token);
+
+    // if (token == null || token == undefined) {
+    //   setSignIn(false);
+    // } else if (token != null && token != undefined) {
+    //   setSignIn(true);
+    //}
+    if (token != undefined) {
+      console.log("token is ", token);
       setSignIn(true);
     }
     console.log("signIn is ", signIn);
-  });
+  }, [token]);
 
   function ChangeComponent(i) {
     //console.log("i value is " + i);
@@ -246,7 +251,7 @@ function SideBar(props) {
               placeholder="Search"
               className={classes.searchBox}
             />
-            <CreateStreamDialog />
+            <CreateStreamDialog token={token} />
             {/* {localStorage.getItem("jwt") == ""
               ? setSignIn(false)
               : setSignIn(true)} */}

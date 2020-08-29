@@ -14,7 +14,7 @@ import FormLabel from "@material-ui/core/FormLabel";
 import Axios from "axios";
 import BuildIcon from "@material-ui/icons/Build";
 
-function CreateStreamDialog() {
+function CreateStreamDialog(props) {
   const [open, setOpen] = React.useState(false);
 
   const [name, setName] = React.useState("");
@@ -29,6 +29,7 @@ function CreateStreamDialog() {
   };
 
   const handleClose = () => {
+    props.token = !props.token;
     setOpen(false);
   };
 
