@@ -111,12 +111,13 @@ function SideBar(props) {
     // } else if (token != null && token != undefined) {
     //   setSignIn(true);
     //}
-    console.log(token);
-    if (token !== undefined || token !== "") {
-      console.log("token is ", token);
-      setSignIn("yes");
-    }
-    console.log("signIn is ", signIn);
+    // console.log("outside if token is", token);
+    // if (typeof token !== undefined || typeof token !== "") {
+    //   console.log("Inside if ");
+    //   console.log("token is ", token);
+    //   setSignIn("yes");
+    // }
+    // console.log("After if signIn is", signIn);
   }, []);
 
   function ChangeComponent(i) {
@@ -253,8 +254,10 @@ function SideBar(props) {
               className={classes.searchBox}
             />
             <CreateStreamDialog />
-
-            <Block signIn={signIn} />
+            {console.log("token is ", token)}
+            {console.log(token.length)}
+            {token.length > 0 && <Block signIn={true} />}
+            {token.length === 0 && <Block signIn={false} />}
           </Toolbar>
         </AppBar>
       </ThemeProvider>

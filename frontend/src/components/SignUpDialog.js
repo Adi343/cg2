@@ -13,7 +13,7 @@ import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 import Axios from "axios";
 
-export default function SignUpDialog() {
+export default function SignUpDialog(props) {
   const [open, setOpen] = React.useState(false);
 
   const [name, setName] = React.useState("");
