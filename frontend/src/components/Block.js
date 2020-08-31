@@ -14,7 +14,8 @@ const styles = {
 const useStyles = makeStyles(styles);
 function Block(props) {
   const classes = useStyles();
-  if (props.signIn == true) {
+  console.log("props.signIn is ", props.signIn);
+  if (props.signIn === "yes") {
     return (
       <div>
         <NotificationsIcon fontSize="large" />

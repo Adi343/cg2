@@ -14,7 +14,7 @@ import FormLabel from "@material-ui/core/FormLabel";
 import Axios from "axios";
 import BuildIcon from "@material-ui/icons/Build";
 
-function CreateStreamDialog(props) {
+function CreateStreamDialog() {
   const [open, setOpen] = React.useState(false);
 
   const [name, setName] = React.useState("");
@@ -29,7 +29,7 @@ function CreateStreamDialog(props) {
   };
 
   const handleClose = () => {
-    props.token = !props.token;
+    localStorage.setItem("jwt", "");
     setOpen(false);
   };
 
