@@ -26,6 +26,7 @@ router.post("/", (req, res) => {
   //sign jwt token and send to user.
   //console.log(req.user);
   // if (req.user) {
+  console.log(req.body);
   console.log("name is ", name);
   console.log("password is ", password);
   if (name && password) {

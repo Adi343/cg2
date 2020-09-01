@@ -60,9 +60,11 @@ export default function SignInDialog() {
     setOpen(false);
 
     axios
-      .post(url)
+      .post(url, { name: userName, password: password })
       .then((response) => {
         console.log(response.data);
+        var token = response.data.token;
+        localStorage.setItem("jwt", token);
       })
       .catch((error) => {
         console.log(error);
