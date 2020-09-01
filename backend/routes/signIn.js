@@ -4,6 +4,7 @@ const userModel = require("../models/userModel");
 const { route } = require("./auth");
 let router = express.Router();
 const authenticateJwt = require("./authenticateJwt");
+const jwt = require("jsonwebtoken");
 /*
 router.get("/", (req, res) => {
   userModel.find({}, (err, users) => {
@@ -18,24 +19,38 @@ router.get("/", (req, res) => {
 });
 */
 
-router.post("/", authenticateJwt, (req, res) => {
+router.post("/", (req, res) => {
   var name = req.body.name;
   var password = req.body.password;
-
+  //get email and account type from database.
+  //sign jwt token and send to user.
   //console.log(req.user);
-  if (req.user) {
-    //console.log("name is ", name);
-    //console.log("password is ", password);
-    if (name && password) {
-      res.send("User sign in successful");
-      res.status(200);
-    } else {
-      res.send("Enter full details");
-      res.send(403);
-    }
+  // if (req.user) {
+  console.log("name is ", name);
+  console.log("password is ", password);
+  if (name && password) {
+    //res.send("User sign in successful");
+    var email, accountType;
+    userModel.find({ name: name, password: password }, (error, data) => {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log(data[0]);
+        email = data[0].email;
+        accountType = data[0].accountType;
+      }
+    });
+    var user = new userModel({ name, email, password, accountType });
+    var token = jwt.sign({ user }, "mySecretCode");
+    res.json({ message: "Sign In successful", token });
+    res.sendStatus(200);
   } else {
-    res.status(403);
+    res.send("Enter full details");
+    res.sendStatus(403);
   }
+  // } else {
+  //   res.status(403);
+  // }
 });
 
 router.get("/:name", (req, res) => {

@@ -38,6 +38,7 @@ export default function SignInDialog() {
 
   const handleClose = () => {
     let url = "/signIn/" + userName;
+
     setOpen(false);
 
     axios
@@ -54,6 +55,19 @@ export default function SignInDialog() {
   const handleSubmit = () => {
     setOpen(false);
     //console.log("userName is ", userName, " passWord is ", password);
+    let url = "/signIn/";
+
+    setOpen(false);
+
+    axios
+      .post(url)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .then(() => {});
   };
 
   return (
@@ -89,7 +103,7 @@ export default function SignInDialog() {
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleClose} variant="contained" color="primary">
+          <Button onClick={handleSubmit} variant="contained" color="primary">
             Let's go!
           </Button>
         </DialogActions>
