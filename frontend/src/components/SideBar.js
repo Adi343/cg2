@@ -54,10 +54,11 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
   },
   title: {
-    flex: 1,
+    flex: 0.25,
     color: "black",
+    fontWeight: 700,
   },
-  searchBox: { flex: 1 },
+  searchBox: { flex: 0.5, width: 100 },
   signInDialog: { flex: 1 },
   signUpDialog: { flex: 1 },
 
