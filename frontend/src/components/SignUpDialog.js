@@ -26,7 +26,7 @@ export default function SignUpDialog(props) {
     setOpen(true);
   };
 
-  const handleClose = () => {
+  const handleSubmit = () => {
     Axios.post("/signup", {
       name: name,
       email: email,
@@ -38,7 +38,14 @@ export default function SignUpDialog(props) {
         localStorage.setItem("jwt", response.data.token);
         console.log("localStorage.getItem(jwt)", localStorage.getItem("jwt"));
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.log(error))
+      .then(() => {
+        window.location.reload(true);
+      });
+    setOpen(false);
+  };
+
+  const handleClose = () => {
     setOpen(false);
   };
 
@@ -120,7 +127,7 @@ export default function SignUpDialog(props) {
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleClose} variant="contained" color="primary">
+          <Button onClick={handleSubmit} variant="contained" color="primary">
             Let's go!
           </Button>
         </DialogActions>

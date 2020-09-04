@@ -15,58 +15,18 @@ import Axios from "axios";
 import BuildIcon from "@material-ui/icons/Build";
 
 function CreateStreamDialog() {
-  const [open, setOpen] = React.useState(false);
-
-  const [name, setName] = React.useState("");
-
-  const handleClickOpen = () => {
+  const handleClick = () => {
     //console.log("button pressed!");
-    setOpen(true);
-  };
-
-  const handleSubmit = () => {
-    //console.log("handle submit called!");
-  };
-
-  const handleClose = () => {
     localStorage.setItem("jwt", "");
-    setOpen(false);
+    window.location.reload(true);
   };
 
-  const handleName = (e) => {
-    setName(e.target.value);
-  };
   return (
     <div>
       {/* <Button variant="outlined" onClick={handleClickOpen}>
         CreateStream
       </Button> */}
-      <BuildIcon onClick={handleClickOpen} />
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="form-dialog-title"
-      >
-        <DialogTitle id="form-dialog-title">Create a new Stream!</DialogTitle>
-        <DialogContent>
-          <TextField
-            margin="dense"
-            id="name"
-            label="name"
-            type="text"
-            fullWidth
-            onChange={handleName}
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleSubmit} variant="contained" color="primary">
-            Create
-          </Button>
-        </DialogActions>
-      </Dialog>
+      <BuildIcon onClick={handleClick} />
     </div>
   );
 }

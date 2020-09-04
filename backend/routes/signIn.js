@@ -43,11 +43,12 @@ router.post("/", (req, res) => {
     });
     var user = new userModel({ name, email, password, accountType });
     var token = jwt.sign({ user }, "mySecretCode");
+    console.log(token);
     res.json({ message: "Sign In successful", token });
-    res.sendStatus(200);
+    //res.sendStatus(200);
   } else {
     res.send("Enter full details");
-    res.sendStatus(403);
+    //res.sendStatus(403);
   }
   // } else {
   //   res.status(403);

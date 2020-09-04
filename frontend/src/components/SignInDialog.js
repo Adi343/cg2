@@ -69,7 +69,9 @@ export default function SignInDialog() {
       .catch((error) => {
         console.log(error);
       })
-      .then(() => {});
+      .then(() => {
+        window.location.reload(true);
+      });
   };
 
   return (

@@ -16,8 +16,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
-import AddCircleIcon from "@material-ui/icons/AddCircle";
-//import CreateStreamDialog from "./createStreamDialog";
+
 import {
   makeStyles,
   useTheme,
@@ -34,6 +33,12 @@ import Classes from "./Classes";
 import { red } from "@material-ui/core/colors";
 import Block from "./Block";
 import CreateStreamDialog from "./createStreamDialog";
+import CreateStream from "./createStream";
+
+import HomeIcon from "@material-ui/icons/Home";
+import BookIcon from "@material-ui/icons/Book";
+import MessageIcon from "@material-ui/icons/Message";
+import SchoolIcon from "@material-ui/icons/School";
 const drawerWidth = 200;
 
 const useStyles = makeStyles((theme) => ({
@@ -107,18 +112,18 @@ function SideBar(props) {
 
     //console.log("localStorage.getItem(jwt)", token);
 
-    // if (token == null || token == undefined) {
-    //   setSignIn(false);
-    // } else if (token != null && token != undefined) {
-    //   setSignIn(true);
-    //}
-    // console.log("outside if token is", token);
-    // if (typeof token !== undefined || typeof token !== "") {
-    //   console.log("Inside if ");
-    //   console.log("token is ", token);
-    //   setSignIn("yes");
-    // }
-    // console.log("After if signIn is", signIn);
+    if (token == null || token == undefined) {
+      setSignIn(false);
+    } else if (token != null && token != undefined) {
+      setSignIn(true);
+    }
+    console.log("outside if token is", token);
+    if (typeof token !== undefined || typeof token !== "") {
+      console.log("Inside if ");
+      console.log("token is ", token);
+      setSignIn("yes");
+    }
+    console.log("After if signIn is", signIn);
   }, []);
 
   function ChangeComponent(i) {
@@ -208,7 +213,11 @@ function SideBar(props) {
         {["Feed", "Notes", "Messages", "Classes"].map((text, index) => (
           <ListItem button key={text} onClick={() => handleNavBarItems(text)}>
             <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
+              {index === "Feed" && <HomeIcon />}
+              {index === "Notes" && <BookIcon />}
+              {index === "Messages" && <MessageIcon />}
+              {index === "Classes" && <SchoolIcon />}
             </ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
@@ -255,6 +264,7 @@ function SideBar(props) {
               className={classes.searchBox}
             />
             <CreateStreamDialog />
+            <CreateStream />
             {console.log("token is ", token)}
             {console.log(token.length)}
             {token.length > 0 && <Block signIn={true} />}
