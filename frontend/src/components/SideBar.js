@@ -44,6 +44,7 @@ const drawerWidth = 200;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
+    fontFamily: "Poppins",
   },
   drawer: {
     [theme.breakpoints.up("sm")]: {
@@ -62,6 +63,7 @@ const useStyles = makeStyles((theme) => ({
     flex: 0.25,
     color: "black",
     fontWeight: 700,
+    fontFamily: "Poppins",
   },
   searchBox: { flex: 0.5, width: 100 },
   signInDialog: { flex: 1 },
@@ -91,7 +93,7 @@ const myTheme = createMuiTheme({
       main: "#ffffff",
     },
     secondary: {
-      main: "#000000",
+      main: "#042819",
     },
   },
 });
@@ -214,10 +216,10 @@ function SideBar(props) {
           <ListItem button key={text} onClick={() => handleNavBarItems(text)}>
             <ListItemIcon>
               {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-              {index === "Feed" && <HomeIcon />}
-              {index === "Notes" && <BookIcon />}
-              {index === "Messages" && <MessageIcon />}
-              {index === "Classes" && <SchoolIcon />}
+              {text === "Feed" && <HomeIcon color="secondary" />}
+              {text === "Notes" && <BookIcon />}
+              {text === "Messages" && <MessageIcon />}
+              {text === "Classes" && <SchoolIcon />}
             </ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
