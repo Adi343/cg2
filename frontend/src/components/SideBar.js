@@ -65,9 +65,18 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 700,
     fontFamily: "Poppins",
   },
-  searchBox: { flex: 0.5, width: 100 },
+  searchBox: { flex: 0.5, width: 100, flexgrow: 1 },
   signInDialog: { flex: 1 },
   signUpDialog: { flex: 1 },
+  block: {
+    flex: 1,
+  },
+  createStreamDialog: {
+    flex: 1,
+  },
+  createStream: {
+    flex: 1,
+  },
 
   menuButton: {
     marginRight: theme.spacing(2),
@@ -216,7 +225,7 @@ function SideBar(props) {
           <ListItem button key={text} onClick={() => handleNavBarItems(text)}>
             <ListItemIcon>
               {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-              {text === "Feed" && <HomeIcon color="#000000" />}
+              {text === "Feed" && <HomeIcon htmlColor="#628744" />}
               {text === "Notes" && <BookIcon />}
               {text === "Messages" && <MessageIcon />}
               {text === "Classes" && <SchoolIcon />}
@@ -265,8 +274,8 @@ function SideBar(props) {
               placeholder="Search"
               className={classes.searchBox}
             />
-            <CreateStreamDialog />
-            <CreateStream />
+            <CreateStreamDialog className={classes.createStreamDialog} />
+            <CreateStream className={classes.createStream} />
             {console.log("token is ", token)}
             {console.log(token.length)}
             {token.length > 0 && <Block signIn={true} />}
