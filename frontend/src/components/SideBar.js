@@ -216,7 +216,7 @@ function SideBar(props) {
           <ListItem button key={text} onClick={() => handleNavBarItems(text)}>
             <ListItemIcon>
               {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-              {text === "Feed" && <HomeIcon color="secondary" />}
+              {text === "Feed" && <HomeIcon color="#000000" />}
               {text === "Notes" && <BookIcon />}
               {text === "Messages" && <MessageIcon />}
               {text === "Classes" && <SchoolIcon />}

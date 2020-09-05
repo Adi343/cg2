@@ -76,7 +76,7 @@ export default function SignInDialog() {
 
   return (
     <div>
-      <Button variant="contained" color="secondary" onClick={handleClickOpen}>
+      <Button variant="contained" color="#343434" onClick={handleClickOpen}>
         Sign In
       </Button>
       <Dialog
