@@ -101,7 +101,8 @@ router.post("/updateStream", (req, res) => {
 });
 
 router.delete("/deleteStream", (req, res) => {
-  if (req.body.name !== undefined) {
+  console.log(req.body.name);
+  if (req.body.name === undefined) {
     console.log("enter full details");
     res.send("enter full details");
   } else {
@@ -111,8 +112,18 @@ router.delete("/deleteStream", (req, res) => {
       } else {
         if (data.length == 0) {
           console.log("stream does'nt exist");
+        } else if (data.length == 1) {
+          console.log("data.length is 1");
+          stream.deleteOne({ name: req.body.name }, (error) => {
+            console.log(error);
+            res.send("deleted one stream by name ", req.body.name);
+          });
         } else {
-          stream.deleteOne;
+          console.log("data.length is many");
+          stream.deleteMany({ name: req.body.name }, (error) => {
+            console.log("error is ", error);
+            res.send("deleted many users by name ", req.body.name);
+          });
         }
       }
     });
