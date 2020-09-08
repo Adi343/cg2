@@ -40,7 +40,7 @@ app.get("/", (req, res) => {
     console.log("Cookie exists");
   }
   res.send("Welcome to japan!");
-  nextTick();
+  //nextTick();
 });
 
 // io.on("connection", function (socket) {
