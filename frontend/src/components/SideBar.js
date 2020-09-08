@@ -39,6 +39,9 @@ import HomeIcon from "@material-ui/icons/Home";
 import BookIcon from "@material-ui/icons/Book";
 import MessageIcon from "@material-ui/icons/Message";
 import SchoolIcon from "@material-ui/icons/School";
+
+import Grid from "@material-ui/core/Grid";
+import GridItem from "@material-ui/core/Grid";
 const drawerWidth = 200;
 
 const useStyles = makeStyles((theme) => ({
@@ -57,26 +60,18 @@ const useStyles = makeStyles((theme) => ({
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
     },
-    display: "flex",
   },
   title: {
-    flex: 0.25,
     color: "black",
     fontWeight: 700,
     fontFamily: "Poppins",
   },
-  searchBox: { flex: 0.5, width: 100, flexgrow: 1 },
-  signInDialog: { flex: 1 },
-  signUpDialog: { flex: 1 },
-  block: {
-    flex: 1,
-  },
-  createStreamDialog: {
-    flex: 1,
-  },
-  createStream: {
-    flex: 1,
-  },
+  searchBox: {},
+  signInDialog: {},
+  signUpDialog: {},
+  block: {},
+  createStreamDialog: {},
+  createStream: {},
 
   menuButton: {
     marginRight: theme.spacing(2),
@@ -266,20 +261,42 @@ function SideBar(props) {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h5" noWrap className={classes.title}>
-              CollegeGram
-            </Typography>
-            <TextField
-              variant="filled"
-              placeholder="Search"
-              className={classes.searchBox}
-            />
-            <CreateStreamDialog className={classes.createStreamDialog} />
-            <CreateStream className={classes.createStream} />
-            {console.log("token is ", token)}
-            {console.log(token.length)}
-            {token.length > 0 && <Block signIn={true} />}
-            {token.length === 0 && <Block signIn={false} />}
+            <Grid
+              container
+              spacing={10}
+              alignItems="center"
+              justify="space-between"
+            >
+              <Grid item xs={3}>
+                <Typography variant="h5" noWrap className={classes.title}>
+                  CollegeGram
+                </Typography>
+              </Grid>
+
+              <Grid item xs={3}>
+                <TextField
+                  variant="filled"
+                  placeholder="Search"
+                  className={classes.searchBox}
+                />
+              </Grid>
+
+              <Grid item xs={6}>
+                <Grid
+                  container
+                  alignItems="center"
+                  justify="flex-end"
+                  direction="row"
+                >
+                  <CreateStreamDialog className={classes.createStreamDialog} />
+                  <CreateStream className={classes.createStream} />
+                  {console.log("token is ", token)}
+                  {console.log(token.length)}
+                  {token.length > 0 && <Block signIn={true} />}
+                  {token.length === 0 && <Block signIn={false} />}
+                </Grid>
+              </Grid>
+            </Grid>
           </Toolbar>
         </AppBar>
       </ThemeProvider>

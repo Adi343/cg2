@@ -8,6 +8,7 @@ const styles = {
   blk: {
     display: "flex",
     flexDirection: "row",
+    margin: "10px",
   },
 };
 
