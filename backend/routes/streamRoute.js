@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const stream = require("../models/stream");
 let router = express.Router();
 const authJwt = require("./authenticateJwt");
+const e = require("express");
 
 router.get("/", (req, res) => {
   res.send("Inside stream get route");
@@ -69,32 +70,47 @@ router.post("/:name", (req, res) => {
   //}
 });
 
-router.post("/updateStream", (req, res) => {
+router.put("/updateStream", (req, res) => {
   var newName = req.body.name;
-
-  if (newName !== undefined && newName !== "") {
-    var newStream = new stream(newName);
-
-    stream.find({ name: newName }, (error, data) => {
+  var id = req.body.id;
+  console.log(id);
+  if (id !== undefined && id !== "") {
+    //var newStream = new stream(newName);
+    stream.findById(id, (error, data) => {
       if (error) {
         console.log(error);
       } else {
-        if (data.length > 0) {
-          console.log("stream with this name already exists!");
-          res.send("stream with this name already exists");
-        } else {
-          var id = data.id;
-          stream.findByIdAndUpdate(id, { name: newName }, (error, result) => {
-            if (error) {
-              console.log(error);
-            } else {
-              console.log("update stream is ", result);
-              res.send("stream is updated ", result);
-            }
-          });
-        }
+        stream.findByIdAndUpdate(id, { name: newName }, (error, result) => {
+          if (error) {
+            console.log(error);
+          } else {
+            console.log("stream is updated");
+            res.send("stream is updated");
+          }
+        });
       }
     });
+
+    // stream.find({ name: newName }, (error, data) => {
+    //   if (error) {
+    //     console.log(error);
+    //   } else {
+    //     if (data.length > 0) {
+    //       console.log("stream with this name already exists!");
+    //       res.send("stream with this name already exists");
+    //     } else {
+    //       var id = data.id;
+    //       stream.findByIdAndUpdate(id, { name: newName }, (error, result) => {
+    //         if (error) {
+    //           console.log(error);
+    //         } else {
+    //           console.log("update stream is ", result);
+    //           res.send("stream is updated ", result);
+    //         }
+    //       });
+    //     }
+    //   }
+    // });
   } else {
     res.send("Enter full details!");
   }
@@ -116,14 +132,14 @@ router.delete("/deleteStream", (req, res) => {
           console.log("data.length is 1");
           stream.deleteOne({ name: req.body.name }, (error) => {
             console.log(error);
-            res.send("deleted one stream by name ", req.body.name);
           });
+          res.status(200).send("deleted one stream by name ");
         } else {
           console.log("data.length is many");
           stream.deleteMany({ name: req.body.name }, (error) => {
             console.log("error is ", error);
-            res.send("deleted many users by name ", req.body.name);
           });
+          res.status(200).send("deleted many users by name ");
         }
       }
     });
