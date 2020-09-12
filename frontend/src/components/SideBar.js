@@ -42,6 +42,7 @@ import SchoolIcon from "@material-ui/icons/School";
 
 import Grid from "@material-ui/core/Grid";
 import GridItem from "@material-ui/core/Grid";
+import streamPage from "./streamPage";
 const drawerWidth = 200;
 
 const useStyles = makeStyles((theme) => ({
@@ -178,6 +179,9 @@ function SideBar(props) {
       case 3:
         return <Classes />;
         break;
+      case 4:
+        return <streamPage />;
+        break;
 
       default:
         return <Feed />;
@@ -198,6 +202,9 @@ function SideBar(props) {
       case "Classes":
         setMenuItem(3);
         break;
+      case "Streams":
+        setMenuItem(4);
+        break;
     }
   }
 
@@ -216,18 +223,20 @@ function SideBar(props) {
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        {["Feed", "Notes", "Messages", "Classes"].map((text, index) => (
-          <ListItem button key={text} onClick={() => handleNavBarItems(text)}>
-            <ListItemIcon>
-              {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-              {text === "Feed" && <HomeIcon htmlColor="#628744" />}
-              {text === "Notes" && <BookIcon />}
-              {text === "Messages" && <MessageIcon />}
-              {text === "Classes" && <SchoolIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+        {["Feed", "Notes", "Messages", "Classes", "Streams"].map(
+          (text, index) => (
+            <ListItem button key={text} onClick={() => handleNavBarItems(text)}>
+              <ListItemIcon>
+                {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
+                {text === "Feed" && <HomeIcon htmlColor="#628744" />}
+                {text === "Notes" && <BookIcon />}
+                {text === "Messages" && <MessageIcon />}
+                {text === "Classes" && <SchoolIcon />}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          )
+        )}
       </List>
       <Divider />
       {/*<List>
