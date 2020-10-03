@@ -12,6 +12,7 @@ import NotesCard from "./components/notesCard";
 import NotesGrid from "./components/NotesGrid";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 import SignUpDialog from "./components/SignUpDialog";
+import UserPage from "./components/UserPage";
 
 function App() {
   const theme = createMuiTheme({
@@ -26,8 +27,11 @@ function App() {
   return (
     <div>
       <Router>
-        <Route path="/" component={SideBar} />
-        <Route path="/signup" component={SignUpDialog} />
+        <Switch>
+          <Route path="/" component={SideBar} />
+          <Route path="/signup" component={SignUpDialog} />
+          <Route exact path="/userPage/" component={UserPage} />
+        </Switch>
       </Router>
       {/*<SideBar /> */}
     </div>
