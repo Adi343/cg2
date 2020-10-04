@@ -4,11 +4,16 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "font-awesome/css/font-awesome.min.css";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import UserPage from "./components/UserPage";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <BrowserRouter>
+    <Switch>
+      <Route path="" component={App} />
+      <Route exact path="/userPage" component={UserPage} />
+    </Switch>
+  </BrowserRouter>,
   document.getElementById("root")
 );
 

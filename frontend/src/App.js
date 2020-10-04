@@ -30,7 +30,9 @@ function App() {
         <Switch>
           <Route path="/" component={SideBar} />
           <Route path="/signup" component={SignUpDialog} />
-          <Route exact path="/userPage/" component={UserPage} />
+          <Route exact path="/userPage/">
+            <UserPage />
+          </Route>
         </Switch>
       </Router>
       {/*<SideBar /> */}
