@@ -8,12 +8,15 @@ import DialogContent from "@material-ui/core/DialogContent";
 import { Typography } from "@material-ui/core";
 
 function UserPage(props) {
-  if (props.open == true) {
+  var check = props.open;
+  const handleClose = () => {
+    check = false;
+  };
+  if (check == true) {
     return (
       <div>
-        <Dialog>
+        <Dialog open={check} onClose={handleClose}>
           <Typography variant="h2">User Settings</Typography>
-
           <Avatar variant="circle" src="" />
           <DialogContent>
             <Typography variant="h2">Settings</Typography>

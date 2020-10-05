@@ -24,21 +24,19 @@ function Block(props) {
   // });
 
   const accountButtonClicked = (e) => {
-    alert("Account button clicked!");
+    console.log("account button clicked!");
+    setAccountDialog(true);
+    console.log(openAccountDialog);
   };
 
-  const setCheck = () => {
-    props.open = !props.open;
-  };
-
-  const [check, setCheck] = React.useState(props.open);
+  const [openAccountDialog, setAccountDialog] = React.useState(props.open);
 
   if (props.signIn === true) {
     return (
       <div>
         <NotificationsIcon fontSize="large" />
         <AccountCircle fontSize="large" onClick={accountButtonClicked} />
-        <UserPage open={false} />
+        <UserPage open={openAccountDialog} />
       </div>
     );
   } else {
