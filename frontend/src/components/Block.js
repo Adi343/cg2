@@ -4,6 +4,8 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import SignInDialog from "./SignInDialog";
 import SignUpDialog from "./SignUpDialog";
 import { makeStyles } from "@material-ui/styles";
+import UserPage from "./UserPage";
+
 const styles = {
   blk: {
     display: "flex",
@@ -21,11 +23,22 @@ function Block(props) {
   //   this.props.history.push("/");
   // });
 
+  const accountButtonClicked = (e) => {
+    alert("Account button clicked!");
+  };
+
+  const setCheck = () => {
+    props.open = !props.open;
+  };
+
+  const [check, setCheck] = React.useState(props.open);
+
   if (props.signIn === true) {
     return (
       <div>
         <NotificationsIcon fontSize="large" />
-        <AccountCircle fontSize="large" />
+        <AccountCircle fontSize="large" onClick={accountButtonClicked} />
+        <UserPage open={false} />
       </div>
     );
   } else {

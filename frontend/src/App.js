@@ -28,11 +28,8 @@ function App() {
     <div>
       <Router>
         <Switch>
-          <Route path="/" component={SideBar} />
-          <Route path="/signup" component={SignUpDialog} />
-          <Route exact path="/userPage/">
-            <UserPage />
-          </Route>
+          <Route exact path="/userPage/" component={UserPage} />
+          <Route exact path="/" component={SideBar} />
         </Switch>
       </Router>
       {/*<SideBar /> */}
