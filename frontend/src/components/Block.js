@@ -4,7 +4,7 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import SignInDialog from "./SignInDialog";
 import SignUpDialog from "./SignUpDialog";
 import { makeStyles } from "@material-ui/styles";
-import UserPage from "./UserPage";
+import userPageNew from "./userPageNew";
 
 const styles = {
   blk: {
@@ -36,7 +36,8 @@ function Block(props) {
       <div>
         <NotificationsIcon fontSize="large" />
         <AccountCircle fontSize="large" onClick={accountButtonClicked} />
-        <UserPage open={openAccountDialog} />
+        {console.log("openAccountDialog is ", openAccountDialog)}
+        <userPageNew open={openAccountDialog} />
       </div>
     );
   } else {

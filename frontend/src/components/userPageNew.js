@@ -7,7 +7,7 @@ import MuiDialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import { Typography } from "@material-ui/core";
 
-function UserPage(props) {
+function userPageNew(props) {
   var check = props.open;
 
   const [dialogOpen, setDialogOpen] = useState();
@@ -42,4 +42,4 @@ function UserPage(props) {
   }
 }
 
-export default UserPage;
+export default userPageNew;
