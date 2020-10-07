@@ -10,7 +10,7 @@ import { Typography } from "@material-ui/core";
 function userPageNew(props) {
   var check = props.open;
 
-  const [dialogOpen, setDialogOpen] = useState();
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   const handleClose = () => {
     console.log("Inside handleClose UserPage");
@@ -19,15 +19,16 @@ function userPageNew(props) {
     check = false;
   };
 
-  useEffect(() => {
-    console.log("useEffect called!");
-  }, [check]);
+  // useEffect(() => {
+  //   console.log("useEffect called!");
+  // }, [check]);
 
   //console.log("check is ", check);
   console.log("dialog open is ", dialogOpen);
-  if (check == true) {
-    return (
-      <div>
+  // if (check == true) {
+  return (
+    <div>
+      {check == True && (
         <Dialog open={check} onClose={handleClose}>
           <Typography variant="h2">User Settings</Typography>
           <Avatar variant="circle" src="" />
@@ -35,11 +36,12 @@ function userPageNew(props) {
             <Typography variant="h2">Settings</Typography>
           </DialogContent>
         </Dialog>
-      </div>
-    );
-  } else {
-    return <div></div>;
-  }
+      )}
+    </div>
+  );
+  // } else {
+  //   return <div></div>;
+  // }
 }
 
 export default userPageNew;
