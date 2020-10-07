@@ -4,7 +4,7 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import SignInDialog from "./SignInDialog";
 import SignUpDialog from "./SignUpDialog";
 import { makeStyles } from "@material-ui/styles";
-import userPageNew from "./userPageNew";
+import UserPageNew from "./UserPageNew";
 
 const styles = {
   blk: {
@@ -29,7 +29,7 @@ function Block(props) {
     console.log(openAccountDialog);
   };
 
-  const [openAccountDialog, setAccountDialog] = React.useState(props.open);
+  const [openAccountDialog, setAccountDialog] = React.useState(false);
 
   if (props.signIn === true) {
     return (
@@ -37,7 +37,7 @@ function Block(props) {
         <NotificationsIcon fontSize="large" />
         <AccountCircle fontSize="large" onClick={accountButtonClicked} />
         {console.log("openAccountDialog is ", openAccountDialog)}
-        <userPageNew open={openAccountDialog} />
+        {openAccountDialog == true && <UserPageNew open={true} />}
       </div>
     );
   } else {

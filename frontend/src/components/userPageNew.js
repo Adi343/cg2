@@ -7,28 +7,32 @@ import MuiDialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import { Typography } from "@material-ui/core";
 
-function userPageNew(props) {
-  var check = props.open;
-
+function UserPageNew() {
+  //var check = props.open;
+  //console.log("props are", props);
+  const [check, setCheck] = useState(true);
   const [dialogOpen, setDialogOpen] = useState(false);
 
   const handleClose = () => {
-    console.log("Inside handleClose UserPage");
-    setDialogOpen(false);
-    console.log(dialogOpen);
-    check = false;
+    // console.log("Inside handleClose UserPage");
+    // setDialogOpen(false);
+    // console.log(dialogOpen);
+    setCheck(false);
   };
 
-  // useEffect(() => {
-  //   console.log("useEffect called!");
-  // }, [check]);
+  useEffect(() => {
+    // if (check == false) {
+    //   setCheck(true);
+    // }
+    console.log("useEffect called!");
+  }, [check]);
 
-  //console.log("check is ", check);
-  console.log("dialog open is ", dialogOpen);
+  console.log("check is ", check);
+  //console.log("dialog open is ", dialogOpen);
   // if (check == true) {
   return (
     <div>
-      {check == True && (
+      {check == true && (
         <Dialog open={check} onClose={handleClose}>
           <Typography variant="h2">User Settings</Typography>
           <Avatar variant="circle" src="" />
@@ -44,4 +48,4 @@ function userPageNew(props) {
   // }
 }
 
-export default userPageNew;
+export default UserPageNew;
