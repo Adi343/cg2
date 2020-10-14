@@ -43,6 +43,7 @@ import SchoolIcon from "@material-ui/icons/School";
 import Grid from "@material-ui/core/Grid";
 import GridItem from "@material-ui/core/Grid";
 import streamPage from "./streamPage";
+import UserHomePage from "./UserHomePage";
 const drawerWidth = 200;
 
 const useStyles = makeStyles((theme) => ({

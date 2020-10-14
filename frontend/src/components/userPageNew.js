@@ -5,6 +5,8 @@ import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import MuiDialogContent from "@material-ui/core/DialogContent";
 import MuiDialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
 import { Typography } from "@material-ui/core";
 
 function UserPageNew() {
@@ -14,11 +16,11 @@ function UserPageNew() {
   const [dialogOpen, setDialogOpen] = useState(false);
 
   const handleClose = () => {
-     console.log("Inside handleClose UserPage");
+    console.log("Inside handleClose UserPage");
     // setDialogOpen(false);
     // console.log(dialogOpen);
     setCheck(false);
-    console.log('check is ',check)
+    console.log("check is ", check);
   };
 
   useEffect(() => {
