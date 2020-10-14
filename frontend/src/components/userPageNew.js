@@ -14,10 +14,11 @@ function UserPageNew() {
   const [dialogOpen, setDialogOpen] = useState(false);
 
   const handleClose = () => {
-    // console.log("Inside handleClose UserPage");
+     console.log("Inside handleClose UserPage");
     // setDialogOpen(false);
     // console.log(dialogOpen);
     setCheck(false);
+    console.log('check is ',check)
   };
 
   useEffect(() => {

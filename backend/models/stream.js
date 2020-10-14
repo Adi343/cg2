@@ -4,7 +4,7 @@ const { ObjectId } = mongoose.Schema.Types;
 const streamSchema = new mongoose.Schema({
   name: {
     type: String,
-    requires: true,
+    required: true,
   },
 
   /*accountType: {

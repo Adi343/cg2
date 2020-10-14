@@ -26,7 +26,6 @@ function Block(props) {
   const accountButtonClicked = (e) => {
     console.log("account button clicked!");
     setAccountDialog(true);
-    console.log(openAccountDialog);
   };
 
   const [openAccountDialog, setAccountDialog] = React.useState(false);
