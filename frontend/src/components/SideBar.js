@@ -115,6 +115,7 @@ function SideBar(props) {
   const [signIn, setSignIn] = React.useState("no");
   var token = localStorage.getItem("jwt");
 
+
   useEffect(() => {
     console.log("SideBar useEffect called!");
 
@@ -191,7 +192,8 @@ function SideBar(props) {
   function handleNavBarItems(item) {
     switch (item) {
       case "Feed":
-        return <Feed />;
+        // return <Feed />;
+        setMenuItem(0);
         break;
 
       case "Notes":

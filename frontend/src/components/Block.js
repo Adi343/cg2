@@ -4,7 +4,7 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import SignInDialog from "./SignInDialog";
 import SignUpDialog from "./SignUpDialog";
 import { makeStyles } from "@material-ui/styles";
-import UserPageNew from "./UserPageNew";
+//import UserPageNew from "./UserPageNew";
 import UserDialog from "./UserDialog";
 
 const styles = {
