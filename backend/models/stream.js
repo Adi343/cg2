@@ -6,6 +6,7 @@ const streamSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  
 
   /*accountType: {
     type: String,

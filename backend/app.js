@@ -13,10 +13,12 @@ var cookieParser = require("cookie-parser");
 const { nextTick } = require("process");
 
 const port = 5000;
+const mongoUrl = "mongodb://localhost/cgram";
 
-mongoose.connect(MONGOURI);
+//mongoose.connect(MONGOURI);
+mongoose.connect(mongoUrl)
 mongoose.connection.on("connected", () => {
-  console.log("connected to mongodb server");
+  console.log("connected to mongodb local server");
 });
 
 app.use(express.json());

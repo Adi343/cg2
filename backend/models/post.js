@@ -6,6 +6,10 @@ const postSchema = new mongoose.Schema({
         type:Number,
         required:true
     },
+    streamName:{
+        type:String,
+        required:true
+    },
     title:{
         type:String,
         require:true
@@ -13,6 +17,10 @@ const postSchema = new mongoose.Schema({
     content:{
         type:String,
         require:true
+    },
+    thumbnail:{
+        type:String,
+        require:false
     }
 });
 
