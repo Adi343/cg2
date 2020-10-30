@@ -29,17 +29,22 @@ function Block(props) {
   //   this.props.history.push("/");
   // });
 
+  const notificationClicked = (e) =>{
+    console.log("notification clicled!");
+  }
+  
   const accountButtonClicked = (e) => {
     console.log("account button clicked!");
     setAccountDialog(true);
   };
 
+ 
   const [openAccountDialog, setAccountDialog] = React.useState(false);
 
   if (props.signIn === true) {
     return (
       <div className={classes.blk2}>
-        <NotificationsIcon fontSize="large" />
+        <NotificationsIcon fontSize="large" onclick={notificationClicked()}/>
         {/* <AccountCircle fontSize="large" onClick={accountButtonClicked} /> */}
         {console.log("openAccountDialog is ", openAccountDialog)}
         {/* {openAccountDialog == true && <UserDialog />} */}

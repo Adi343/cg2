@@ -12,8 +12,9 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 const { nextTick } = require("process");
 
-const port = 5000;
-const mongoUrl = "mongodb://localhost/cgram";
+//const port = 5000;
+const port = 27017;
+const mongoUrl = "mongodb://127.0.0.1/cgram";
 
 //mongoose.connect(MONGOURI);
 mongoose.connect(mongoUrl)
