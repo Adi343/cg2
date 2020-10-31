@@ -6,6 +6,7 @@ import SignUpDialog from "./SignUpDialog";
 import { makeStyles } from "@material-ui/styles";
 //import UserPageNew from "./UserPageNew";
 import UserDialog from "./UserDialog";
+import Axios from "axios";
 
 const styles = {
   blk: {
@@ -29,22 +30,29 @@ function Block(props) {
   //   this.props.history.push("/");
   // });
 
-  const notificationClicked = (e) =>{
+  const notificationClicked = (e) => {
     console.log("notification clicled!");
-  }
-  
+    Axios.get("/post").then((response) => {
+      console.log(response).catch((error) => {
+        console.log(error);
+      });
+    });
+  };
+
   const accountButtonClicked = (e) => {
     console.log("account button clicked!");
     setAccountDialog(true);
   };
 
- 
   const [openAccountDialog, setAccountDialog] = React.useState(false);
 
   if (props.signIn === true) {
     return (
       <div className={classes.blk2}>
-        <NotificationsIcon fontSize="large" onclick={notificationClicked()}/>
+        <NotificationsIcon
+          fontSize="large"
+          onClick={(e) => notificationClicked()}
+        />
         {/* <AccountCircle fontSize="large" onClick={accountButtonClicked} /> */}
         {console.log("openAccountDialog is ", openAccountDialog)}
         {/* {openAccountDialog == true && <UserDialog />} */}

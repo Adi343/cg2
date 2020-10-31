@@ -5,6 +5,7 @@ const user = require("./models/userModel");
 const auth = require("./routes/auth");
 const signIn = require("./routes/signIn");
 const streamRoute = require("./routes/streamRoute");
+const postRoute = require("./routes/postRoute");
 const { MONGOURI } = require("./keys.js");
 var http = require("http").Server(app);
 var io = require("socket.io")(http);
@@ -17,7 +18,7 @@ const port = 27017;
 const mongoUrl = "mongodb://127.0.0.1/cgram";
 
 //mongoose.connect(MONGOURI);
-mongoose.connect(mongoUrl)
+mongoose.connect(mongoUrl);
 mongoose.connection.on("connected", () => {
   console.log("connected to mongodb local server");
 });
@@ -56,5 +57,5 @@ app.get("/", (req, res) => {
 app.use("/signup", auth);
 app.use("/signIn", signIn);
 app.use("/stream", streamRoute);
-
+app.use("/post", postRoute);
 app.listen(port, () => console.log("app is listening at port " + port));
