@@ -3,19 +3,19 @@ import FeedCard from "./FeedCard";
 import Button from "@material-ui/core/Button";
 
 const axios = require("axios").default;
-// const url = "https://jsonplaceholder.typicode.com/posts";
-const url = "posts"
+ //const url = "https://jsonplaceholder.typicode.com/posts";
+const url = "/post"
 function Feed() {
   const [isLoading, setIsLoading] = useState(false);
 
   const [users, setUsers] = useState([]);
-
+  console.log(users)
   function getData() {
     axios
       .get(url)
       .then(function (response) {
         // handle success
-        console.log(response.data);
+        console.log('response.data is '+response.data);
         setUsers(response.data);
         //setUsers(response.data);
       })
@@ -41,7 +41,7 @@ function Feed() {
         {users.map((user) => (
           <div>
             <FeedCard title={user.title} content={user.body} />
-            <li>{<FeedCard name={user.name} />}</li>
+            <li>{<FeedCard name={user.title} />}</li>
           </div>
         ))}
       </ul>
