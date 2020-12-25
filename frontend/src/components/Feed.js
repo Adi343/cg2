@@ -3,8 +3,8 @@ import FeedCard from "./FeedCard";
 import Button from "@material-ui/core/Button";
 
 const axios = require("axios").default;
-const url = "https://jsonplaceholder.typicode.com/posts";
-
+// const url = "https://jsonplaceholder.typicode.com/posts";
+const url = "posts"
 function Feed() {
   const [isLoading, setIsLoading] = useState(false);
 

@@ -6,12 +6,12 @@ let router = express.Router();
 router.get("/", (req, res) => {
 
   post.find({}).exec().then(doc=>{
-    res.status(200).json(doc)
+    res.status(200).json(doc);
+    console.log(doc);
   }).catch(err =>{
-    console.log(error)
+    console.log(err)
   });
   // res.json({ message: "touche" });
-  res.json(post.find({}));
 });
 
 module.exports = router;
