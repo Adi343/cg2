@@ -22,12 +22,13 @@ function UserPage(props) {
   useEffect(() => {
     console.log("useEffect called!");
   }, [check]);
-
+  console.log('Inside user page');
   //console.log("check is ", check);
   console.log("dialog open is ", dialogOpen);
   if (check == true) {
     return (
       <div>
+        
         <Dialog open={check} onClose={handleClose}>
           <Typography variant="h2">User Settings</Typography>
           <Avatar variant="circle" src="" />
@@ -38,7 +39,11 @@ function UserPage(props) {
       </div>
     );
   } else {
-    return <div></div>;
+    return (
+    <div>
+      <h1>UserPage</h1>
+      </div>
+      );
   }
 }
 

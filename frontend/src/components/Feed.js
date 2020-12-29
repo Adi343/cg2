@@ -40,8 +40,8 @@ function Feed() {
       <ul>
         {users.map((user) => (
           <div>
-            <FeedCard title={user.title} content={user.body} />
-            <li>{<FeedCard name={user.title} />}</li>
+            <FeedCard title={user.title} content={user.content} thumbnail={user.thumbnail}/>
+            {/* <li>{<FeedCard name={user.title} />}</li> */}
           </div>
         ))}
       </ul>
