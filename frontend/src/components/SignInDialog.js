@@ -44,7 +44,7 @@ export default function SignInDialog() {
     axios
       .get(url)
       .then((response) => {
-        console.log(response.data);
+        console.log(response.data.message);
       })
       .catch((error) => {
         console.log(error);

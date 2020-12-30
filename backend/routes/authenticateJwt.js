@@ -10,6 +10,7 @@ const authenticateJwt = (req, res, next) => {
     const token = authHeader.split(" ")[1];
     jwt.verify(token, accessTokenSecret, (err, user) => {
       if (err) {
+        console.log('error in authenticateJwt');
         return res.status(403);
       }
       req.user = user;

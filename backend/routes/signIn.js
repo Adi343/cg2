@@ -32,18 +32,35 @@ router.post("/", (req, res) => {
   if (name && password) {
     //res.send("User sign in successful");
     var email, accountType;
-    userModel.find({ name: name, password: password }, (error, data) => {
-      if (error) {
-        console.log(error);
-      } else {
-        console.log(data[0]);
-        email = data[0].email;
-        accountType = data[0].accountType;
+    userModel.find({ name: name, password: password }).then((data)=>{
+
+      try{
+        console.log('data is '+data[0]);
+      email = data[0].email;
+      accountType = data[0].accountType;
+      }catch(error){
+        console.log('error is caught')
       }
-    });
+      finally{
+        console.log('inside finally');
+      }
+      
+    }).catch((error)=>{
+      console.log('error is '+error);
+      
+    })
+    // userModel.find({ name: name, password: password }, (error, data) => {
+    //   if (error) {
+    //     console.log('error in signIn.js '+error);
+    //   } else {
+    //     console.log('data is '+data[0]);
+    //     email = data[0].email;
+    //     accountType = data[0].accountType;
+    //   }
+    // });
     var user = new userModel({ name, email, password, accountType });
     var token = jwt.sign({ user }, "mySecretCode");
-    console.log(token);
+    console.log('token is '+token);
     res.json({ message: "Sign In successful", token });
     //res.sendStatus(200);
   } else {
