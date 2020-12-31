@@ -37,39 +37,51 @@ export default function SignInDialog() {
   };
 
   const handleClose = () => {
-    let url = "/signIn/" + userName;
+    // let url = "/signIn/" + userName;
 
     setOpen(false);
 
-    axios
-      .get(url)
-      .then((response) => {
-        console.log(response.data.message);
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .then(() => {});
+    // axios
+    //   .get(url)
+    //   .then((response) => {
+    //     console.log(response.data.message);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   })
+    //   .then(() => {});
   };
 
+  //handle submit function is used to send username and password to api
   const handleSubmit = () => {
     setOpen(false);
     //console.log("userName is ", userName, " passWord is ", password);
     let url = "/signIn/";
 
+    //dataInput is data from api whether user exists or not
+    var dataInput;
     setOpen(false);
 
     axios
       .post(url, { name: userName, password: password })
       .then((response) => {
-        console.log(response.data);
-        var token = response.data.token;
+        console.log('response is '+response.data);
+        dataInput = response.data;
+
+        if(dataInput.message=="Sign In successful"){
+          var token = response.data.token;
         localStorage.setItem("jwt", token);
+        }
+        else{
+          alert('User Not found!');
+        }
+        
       })
       .catch((error) => {
         console.log(error);
       })
       .then(() => {
+        console.log('dataInput is ',dataInput);
         window.location.reload(true);
       });
   };

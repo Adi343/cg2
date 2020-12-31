@@ -6,6 +6,16 @@ const streamSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+
+  members:{
+    type:Array,
+    required:false
+  },
+
+  moderators:{
+    type:Array,
+    required:false
+  }
   
 
   /*accountType: {

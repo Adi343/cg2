@@ -32,6 +32,7 @@ router.post("/", (req, res) => {
   if (name && password) {
     //res.send("User sign in successful");
     var email, accountType;
+    var check = true;
     userModel.find({ name: name, password: password }).then((data)=>{
 
       try{
@@ -39,10 +40,22 @@ router.post("/", (req, res) => {
       email = data[0].email;
       accountType = data[0].accountType;
       }catch(error){
-        console.log('error is caught')
+        check = false;
+        console.log('user not found!');
       }
       finally{
         console.log('inside finally');
+        console.log('check is '+check);
+    if(check==true){
+      var user = new userModel({ name, email, password, accountType });
+    var token = jwt.sign({ user }, "mySecretCode");
+    console.log('token is '+token);
+    res.json({ message: "Sign In successful", token });
+    }
+    else{
+      res.json({message:"user not found!"})
+    }
+
       }
       
     }).catch((error)=>{
@@ -58,10 +71,8 @@ router.post("/", (req, res) => {
     //     accountType = data[0].accountType;
     //   }
     // });
-    var user = new userModel({ name, email, password, accountType });
-    var token = jwt.sign({ user }, "mySecretCode");
-    console.log('token is '+token);
-    res.json({ message: "Sign In successful", token });
+    
+    
     //res.sendStatus(200);
   } else {
     res.send("Enter full details");
@@ -72,6 +83,8 @@ router.post("/", (req, res) => {
   // }
 });
 
+
+//Not Used
 router.get("/:name", (req, res) => {
   var name = req.params.name;
 
