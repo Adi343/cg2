@@ -10,7 +10,7 @@ import Collapse from "@material-ui/core/Collapse";
 import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import { red } from "@material-ui/core/colors";
+import { green, red } from "@material-ui/core/colors";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     transform: "rotate(180deg)",
   },
   avatar: {
-    backgroundColor: red[500],
+     backgroundColor: green[500],
   },
 }));
 
@@ -46,7 +46,8 @@ function FeedCard(props) {
   const imgsrc = props.thumbnail;
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
-
+  const names = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W'];
+  var name = names[Math.floor(Math.random()*11)]
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -55,18 +56,20 @@ function FeedCard(props) {
     <Card className={classes.root}>
       <CardHeader
         avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            R
+          <Avatar aria-label="recipe" className={classes.avatar} backgroundColor="blue">
+            {name}
           </Avatar>
         }
         title={title}
-        subheader="September 14, 2016"
+        //  subheader="September 14, 2016"
       />
-      <CardMedia
+
+      {/* <CardMedia
         className={classes.media}
         title="Paella dish"
         image={imgsrc}
-      />
+      /> */}
+
       <CardContent>
         <Typography variant="body1" color="textPrimary" component="p">
           {content}

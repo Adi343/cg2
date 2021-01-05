@@ -42,7 +42,7 @@ import SchoolIcon from "@material-ui/icons/School";
 
 import Grid from "@material-ui/core/Grid";
 import GridItem from "@material-ui/core/Grid";
-import streamPage from "./streamPage";
+import StreamPage from "./streamPage";
 import UserHomePage from "./UserHomePage";
 const drawerWidth = 200;
 
@@ -135,6 +135,7 @@ function SideBar(props) {
     console.log("After if signIn is", signIn);
   }, []);
 
+  //Not used
   function ChangeComponent(i) {
     //console.log("i value is " + i);
     switch (i) {
@@ -152,6 +153,11 @@ function SideBar(props) {
 
       case 3:
         //Classes
+        break;
+
+      case 4:
+        //streams
+        alert('stream presssed!');
         break;
 
       default:
@@ -182,7 +188,7 @@ function SideBar(props) {
         return <Classes />;
         break;
       case 4:
-        return <streamPage />;
+        return <StreamPage />;
         break;
 
       default:
@@ -302,7 +308,7 @@ function SideBar(props) {
                 >
                   <CreateStreamDialog className={classes.createStreamDialog} />
                   <CreateStream className={classes.createStream} />
-                  {console.log("token is ", token)}
+                  {/* {console.log("token is ", token)} */}
                   {console.log(token.length)}
                   {token.length > 0 && <Block signIn={true} />}
                   {token.length === 0 && <Block signIn={false} />}
