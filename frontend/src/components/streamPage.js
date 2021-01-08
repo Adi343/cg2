@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Paper from "@material-ui/core/Paper";
 import Card from "@material-ui/core/Card";
 import { makeStyles } from "@material-ui/core/styles";
@@ -7,33 +7,34 @@ import { Typography } from "@material-ui/core";
 import StreamCard from "./StreamCard";
 const axios = require("axios").default;
 
-
-const useStyles = makeStyles((theme)=>({
-
-  title:{
-    color:'textPrimary'
+const useStyles = makeStyles((theme) => ({
+  title: {
+    color: "textPrimary",
   },
-  cardPage:{
-    color:red,
-    backgroundColor:red,
-    background:red
-  }
-
+  cardPage: {
+    color: red,
+    backgroundColor: red,
+    background: red,
+  },
 }));
 
 function StreamPage() {
-
-
   const classes = useStyles();
-  const [posts,setPosts] = React.useState([]);
+  const [posts, setPosts] = useState([]);
+  const temp = ['Foo','Bar'];
 
-  axios.get("https://jsonplaceholder.typicode.com/posts").then((response)=>{
-    console.log('axios!');
-    setPosts(response.data)
-  }).then(()=>{
-    console.log('Finished!')
-  })
-
+  useEffect(() => {
+    console.log("Use Effect called!");
+    axios
+      .get("https://jsonplaceholder.typicode.com/posts")
+      .then((response) => {
+        setPosts(response.data);
+      })
+      .catch((error) => {
+        //console.log("Finished!");
+        console.log("error is " + error);
+      });
+  }, []);
 
   return (
     // <Card className={classes.cardPage}>
@@ -43,7 +44,14 @@ function StreamPage() {
     //   </Typography>
     // </Card>
 
-    <StreamCard />
+    {temp.map((num)=>(
+      <h1>{num}</h1>
+    ))}
+
+    
+
+    
+    
   );
 }
 
