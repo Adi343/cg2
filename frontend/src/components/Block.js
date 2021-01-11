@@ -6,6 +6,9 @@ import SignUpDialog from "./SignUpDialog";
 import { makeStyles } from "@material-ui/styles";
 //import UserPageNew from "./UserPageNew";
 import UserDialog from "./UserDialog";
+import {useHistory} from "react-router-dom";
+import createHistory from 'history/createBrowserHistory'
+
 import Axios from "axios";
 
 const styles = {
@@ -31,12 +34,16 @@ function Block(props) {
   // });
 
   const notificationClicked = (e) => {
-    console.log("notification clicled!");
-    Axios.get("/post").then((response) => {
-      console.log(response).catch((error) => {
-        console.log(error);
-      });
-    });
+     console.log("notification clicled!");
+     let history = useHistory();
+    // Axios.get("/post").then((response) => {
+    //   console.log(response).catch((error) => {
+    //     console.log(error);
+     // });
+   // });
+   history.push('/userPage');
+   //browserHistory.push('/userPage');
+
   };
 
   const accountButtonClicked = (e) => {

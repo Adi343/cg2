@@ -12,10 +12,15 @@ const streamSchema = new mongoose.Schema({
     required:false
   },
 
-  moderators:{
+  posts:{
     type:Array,
     required:false
   }
+
+  // moderators:{
+  //   type:Array,
+  //   required:false
+  // }
   
 
   /*accountType: {

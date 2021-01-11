@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.css";
-
 import signup from "./components/signup";
 import Home from "./components/home";
 import SideBar from "./components/SideBar";
 import header from "./components/header";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+ //import createHistory from 'history/createBrowserHistory';
 import Test from "./components/test";
 import Test1 from "./components/test1";
 import NotesCard from "./components/notesCard";
@@ -26,7 +26,7 @@ function App() {
   });
   return (
     <div>
-      <Router>
+      <Router >
         <Switch>
           <Route exact path="/userPage/" component={UserPage} />
           <Route exact path="/" component={SideBar} />

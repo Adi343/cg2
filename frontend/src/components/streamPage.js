@@ -37,16 +37,18 @@ function StreamPage() {
   }, []);
 
   return (
-    // <Card className={classes.cardPage}>
-    //   {/* <h1 className={classes.title}>This is paper!</h1> */}
-    //   <Typography variant="h4" className={classes.Cardtitle}>
-    //     CARD TITLE
-    //   </Typography>
-    // </Card>
 
-    {temp.map((num)=>(
-      <h1>{num}</h1>
-    ))}
+    <StreamCard />
+    //  <Card className={classes.cardPage}>
+    //    {/* <h1 className={classes.title}>This is paper!</h1> */}
+    //    <Typography variant="h4" className={classes.Cardtitle}>
+    //      CARD TITLE
+    //    </Typography>
+    //  </Card>
+
+    // {temp.map((num)=>(
+    //   <h1>{num}</h1>
+    // ))}
 
     
 
