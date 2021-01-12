@@ -7,7 +7,7 @@ import { makeStyles } from "@material-ui/styles";
 //import UserPageNew from "./UserPageNew";
 import UserDialog from "./UserDialog";
 import {useHistory} from "react-router-dom";
-import createHistory from 'history/createBrowserHistory'
+//import createHistory from 'history/createBrowserHistory'
 
 import Axios from "axios";
 
@@ -28,6 +28,7 @@ const useStyles = makeStyles(styles);
 function Block(props) {
   const classes = useStyles();
   console.log("props.signIn is ", props.signIn);
+  let history = useHistory();
 
   // setTimeout(() => {
   //   this.props.history.push("/");
@@ -35,7 +36,7 @@ function Block(props) {
 
   const notificationClicked = (e) => {
      console.log("notification clicled!");
-     let history = useHistory();
+     
     // Axios.get("/post").then((response) => {
     //   console.log(response).catch((error) => {
     //     console.log(error);

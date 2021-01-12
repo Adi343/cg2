@@ -4,9 +4,16 @@ const stream = require("../models/stream");
 let router = express.Router();
 const authJwt = require("./authenticateJwt");
 const e = require("express");
+const { db } = require("../models/stream");
 
 router.get("/", (req, res) => {
+  let data = [];
+  let myStream = new stream({});
   res.send("Inside stream get route");
+  myStream.find({},(err,docs)=>{
+    data = docs;
+  });
+  res.send(data);
 });
 router.post("/", (req, res) => {
   var Name = req.body.name;
