@@ -39,9 +39,12 @@ function StreamPage() {
   useEffect(() => {
     console.log("Use Effect called!");
     axios
-      .get("https://jsonplaceholder.typicode.com/posts")
+      .get("/stream")
       .then((response) => {
+        //setPosts(response.data);
+        console.log('response is '+JSON.stringify(response.data));
         setPosts(response.data);
+
       })
       .catch((error) => {
         //console.log("Finished!");
@@ -68,12 +71,15 @@ function StreamPage() {
         Done
       </Button>
     </Card>}
-    
 
-    <StreamCard />
-    
+    {/* {posts.map((post.name)=>{
+      return <h2>{post.name}</h2>
+    })} */}
+    {console.log('posts are '+JSON.stringify(posts))}
+    {posts.map((post)=>{
+      return <StreamCard title={post.name}/>
+    })}
 
-   
     </div>
   );
 }

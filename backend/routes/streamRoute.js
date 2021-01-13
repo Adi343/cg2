@@ -1,19 +1,21 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const stream = require("../models/stream");
+const streamModel = require("../models/stream");
 let router = express.Router();
 const authJwt = require("./authenticateJwt");
 const e = require("express");
 const { db } = require("../models/stream");
 
 router.get("/", (req, res) => {
-  let data = [];
-  let myStream = new stream({});
-  res.send("Inside stream get route");
-  myStream.find({},(err,docs)=>{
-    data = docs;
+  var data = ['abcd'];
+  //const myStream = new streamModel({});
+  //res.send("Inside stream get route");
+  streamModel.find({},(err,docs)=>{
+    // data.push(docs);
+    // console.log(docs);
+    res.send(docs);
   });
-  res.send(data);
+  
 });
 router.post("/", (req, res) => {
   var Name = req.body.name;
