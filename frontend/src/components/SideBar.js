@@ -114,6 +114,7 @@ function SideBar(props) {
   const [comp, changeComp] = React.useState(0);
   const [signIn, setSignIn] = React.useState("no");
   var token = localStorage.getItem("jwt");
+  var id = localStorage.getItem("id");
 
 
   useEffect(() => {
@@ -130,6 +131,7 @@ function SideBar(props) {
     if (typeof token !== undefined || typeof token !== "") {
       console.log("Inside if ");
       console.log("token is ", token);
+      console.log("id is "+id);
       setSignIn("yes");
     }
     console.log("After if signIn is", signIn);

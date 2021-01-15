@@ -33,12 +33,14 @@ router.post("/", (req, res) => {
     //res.send("User sign in successful");
     var email, accountType;
     var check = true;
+    var id;
     userModel.find({ name: name, password: password }).then((data)=>{
 
       try{
         console.log('data is '+data[0]);
       email = data[0].email;
       accountType = data[0].accountType;
+      id = data[0]._id;
       }catch(error){
         check = false;
         console.log('user not found!');
@@ -50,7 +52,8 @@ router.post("/", (req, res) => {
       var user = new userModel({ name, email, password, accountType });
     var token = jwt.sign({ user }, "mySecretCode");
     console.log('token is '+token);
-    res.json({ message: "Sign In successful", token });
+    console.log('id is '+id);
+    res.json({ message: "Sign In successful", token,id });
     }
     else{
       res.json({message:"user not found!"})

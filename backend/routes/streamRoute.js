@@ -155,4 +155,12 @@ router.delete("/deleteStream", (req, res) => {
   }
 });
 
+router.post("/addUser",(req,res)=>{
+
+  var StreamId = req.data.streamId;
+  var id = req.data.id;
+
+  streamModel.findOne({_id:id}).
+});
+
 module.exports = router;
