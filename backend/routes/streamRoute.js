@@ -5,6 +5,7 @@ let router = express.Router();
 const authJwt = require("./authenticateJwt");
 const e = require("express");
 const { db } = require("../models/stream");
+const userModel = require("../models/userModel");
 
 router.get("/", (req, res) => {
   var data = ['abcd'];
@@ -23,10 +24,10 @@ router.post("/", (req, res) => {
   var admin = "admin";
 
   if (Name !== undefined) {
-    var newStream = new stream();
+    var newStream = new streamModel();
     newStream.name = Name;
 
-    stream.find({ name: Name }, (error, data) => {
+    streamModel.find({ name: Name }, (error, data) => {
       if (error) {
         console.log(error);
       } else {
@@ -35,9 +36,9 @@ router.post("/", (req, res) => {
           console.log("stream with same name exists!");
           res.send("stream with same name exists!");
         } else {
-          newStream.save((err, newStream) => {
+          newStream.save((err) => {
             if (err) {
-              console.log(err);
+              console.log('err is '+err);
             } else {
               //res.json(newStream);
 
@@ -52,32 +53,32 @@ router.post("/", (req, res) => {
     res.send("enter full details!");
   }
 });
-router.post("/:name", (req, res) => {
-  var Name = req.params.name;
+// router.post("/:name", (req, res) => {
+//   var Name = req.params.name;
 
-  var newStream = new stream({ name: Name });
+//   var newStream = new stream({ name: Name });
 
-  // const query = stream.find().where("name").equals(name);
+//   // const query = stream.find().where("name").equals(name);
 
-  // console.log(query[0]);
+//   // console.log(query[0]);
 
-  // if (query != NaN) {
-  //   console.log("stream exists");
-  // } else {
-  newStream.save((err, newStream) => {
-    if (err) {
-      console.log("error creating stream");
-    } else {
-      res.json(newStream);
-    }
-  });
-  //res.send(query);
-  // newStream.save().then(() => {
-  //   console.log("stream created!");
-  //   res.send("user saved successfully!");
-  // });
-  //}
-});
+//   // if (query != NaN) {
+//   //   console.log("stream exists");
+//   // } else {
+//   newStream.save((err, newStream) => {
+//     if (err) {
+//       console.log("error creating stream");
+//     } else {
+//       res.json(newStream);
+//     }
+//   });
+//   //res.send(query);
+//   // newStream.save().then(() => {
+//   //   console.log("stream created!");
+//   //   res.send("user saved successfully!");
+//   // });
+//   //}
+// });
 
 router.put("/updateStream", (req, res) => {
   var newName = req.body.name;
@@ -155,12 +156,30 @@ router.delete("/deleteStream", (req, res) => {
   }
 });
 
+//Dummy route
+router.get("/addUser",(req,res)=>{
+
+  res.send("Route works");
+
+  //streamModel.findOne({_id:id}).
+});
+
+//Adds user to stream
 router.post("/addUser",(req,res)=>{
 
-  var StreamId = req.data.streamId;
+  //var StreamId = req.data.streamId;
   var id = req.data.id;
 
-  streamModel.findOne({_id:id}).
+  userModel.findById(id,(err,docs)=>{
+    if(err){
+      console.log('addUser error is '+err);
+    }
+    else{
+      console.log('addUser docs are '+docs);
+    }
+  })
+
+  //streamModel.findOne({_id:id}).
 });
 
 module.exports = router;

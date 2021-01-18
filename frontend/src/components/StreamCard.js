@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme)=>({
 function StreamCard(props) {
 
     var title = props.title;
-    console.log(title);
+    //console.log(title);
     if(title==undefined){
         title = "This is a stream card";
     }

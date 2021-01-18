@@ -34,6 +34,7 @@ function StreamPage() {
   const classes = useStyles();
   const [posts, setPosts] = useState([]);
   const [createStream,setCreateStream] = useState(false);
+  const [streamName,setStreamName] = useState('');
   const temp = ['Foo','Bar'];
 
   useEffect(() => {
@@ -56,6 +57,22 @@ function StreamPage() {
     setCreateStream(!createStream);
   }
 
+  const handleChange = (e) =>{
+    setStreamName(e.target.value);
+  }
+
+  const handleCreateButton = (e) =>{
+
+    var name = streamName;
+    //var temp = document.getElementById("input").nodeValue;
+    //console.log('temp is '+temp);
+    axios.post("/stream",{name}).then((response)=>{
+      console.log("response for creating stream is "+JSON.stringify(response.data))
+    }).catch((error)=>{
+      console.log('error is '+error)
+    });
+  }
+
   return (
 
     <div>
@@ -66,8 +83,8 @@ function StreamPage() {
     </Button>
 
     {createStream==true &&<Card className={classes.createStreamCard}>
-      <TextField label="Stream Name" variant="outlined"/>
-      <Button variant="contained" >
+      <TextField label="Stream Name" variant="outlined" name="input" onChange={handleChange}/>
+      <Button variant="contained" onClick={handleCreateButton}>
         Done
       </Button>
     </Card>}
@@ -75,7 +92,7 @@ function StreamPage() {
     {/* {posts.map((post.name)=>{
       return <h2>{post.name}</h2>
     })} */}
-    {console.log('posts are '+JSON.stringify(posts))}
+    {/*console.log('posts are '+JSON.stringify(posts))*/}
     {posts.map((post)=>{
       return <StreamCard title={post.name}/>
     })}
