@@ -168,16 +168,54 @@ router.get("/addUser",(req,res)=>{
 router.post("/addUser",(req,res)=>{
 
   //var StreamId = req.data.streamId;
-  var id = req.data.id;
+  var streamName = req.body.streamName;
+  var temp = [];
+  var Id = req.body.id;
 
-  userModel.findById(id,(err,docs)=>{
-    if(err){
-      console.log('addUser error is '+err);
-    }
-    else{
-      console.log('addUser docs are '+docs);
-    }
+      streamModel.findOneAndUpdate({name:streamName},{name:"testNew1"},{new:true},(error,doc)=>{
+
+     if(error){
+       console.log(err);
+     }
+     else{
+       console.log('success');
+       res.send(doc);
+     }
+
+    
+
   })
+
+  //streamModel.findOne({name:streamName},).members.$push({id}).save();
+
+  // streamModel.update({name:streamName},{$push:{temp}},(err,docs)=>{
+    
+  //   if(err){
+  //     console.log(err);
+  //   }
+  //   else{
+  //     console.log(docs);
+  //   }
+  // });
+
+  // streamModel.findByIdAndUpdate({streamName},{$push:{members:id}},(err,docs)=>{
+
+  //   if(err){
+  //     console.log('err are '+err);
+  //   }
+  //   else{
+  //     console.log('success');
+  //   }
+  // })
+
+  // userModel.findById(id,(err,docs)=>{
+  //   if(err){
+  //     console.log('addUser error is '+err);
+  //   }
+  //   else{
+  //     console.log('addUser docs are '+docs);
+  //   }
+  // })
 
   //streamModel.findOne({_id:id}).
 });
