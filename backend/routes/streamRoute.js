@@ -6,6 +6,7 @@ const authJwt = require("./authenticateJwt");
 const e = require("express");
 const { db } = require("../models/stream");
 const userModel = require("../models/userModel");
+const { json } = require("express");
 
 router.get("/", (req, res) => {
   var data = ['abcd'];
@@ -164,22 +165,46 @@ router.get("/addUser",(req,res)=>{
   //streamModel.findOne({_id:id}).
 });
 
-//Adds user to stream
+//Adds user to stream (works)
 router.post("/addUser",(req,res)=>{
 
   //var StreamId = req.data.streamId;
   var streamName = req.body.streamName;
+  var userName = req.body.userName;
+  
   var temp = [];
   var Id = req.body.id;
 
-      streamModel.findOneAndUpdate({name:streamName},{name:"testNew1"},{new:true},(error,doc)=>{
+      streamModel.findOne({name:streamName},(error,doc)=>{
 
      if(error){
        console.log(err);
      }
      else{
        console.log('success');
-       res.send(doc);
+       console.log(doc);
+       if(doc!=null){
+        const streamObj = doc;
+        const member = {
+          name:"adithya"
+        };
+ 
+        streamObj.members.push(member);
+        streamObj.save((err)=>{
+          if(err){
+            console.log('error in saving');
+          }
+          else{
+           res.send(JSON.stringify(doc));
+          }
+        });
+
+       }
+       
+       
+       //res.send(doc);
+
+      
      }
 
     
@@ -218,6 +243,35 @@ router.post("/addUser",(req,res)=>{
   // })
 
   //streamModel.findOne({_id:id}).
+});
+
+//Deletes user from a stream
+router.delete("/deleteUser",(req,res)=>{
+  var streamName = req.body.streamName;
+  var userName = req.body.userName;
+
+  console.log('Inside user delete route '+streamName+' '+userName);
+  if(userName!=null){
+    streamModel.findOneAndDelete({name:streamName},(err,doc)=>{
+      if(err){
+        console.log('User delete error is '+err);
+      }
+      else{
+        const streamObj = doc;
+        streamObj.members.remove({name:userName},(err,doc)=>{
+          if(err){
+            console.log('err is '+err);
+          }
+          else{
+            console.log('User delete doc is '+doc);
+            res.send(doc);
+          }
+        });
+      }
+    });
+
+  }
+  
 });
 
 module.exports = router;
