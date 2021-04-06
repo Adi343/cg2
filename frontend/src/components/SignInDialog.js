@@ -69,8 +69,11 @@ export default function SignInDialog() {
         dataInput = response.data;
 
         if(dataInput.message=="Sign In successful"){
+
           var token = response.data.token;
           var id = response.data.id;
+
+          localStorage.setItem("userName",userName);
         localStorage.setItem("jwt", token);
         localStorage.setItem("id",id);
         console.log("id is "+id);

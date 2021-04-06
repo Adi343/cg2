@@ -122,7 +122,7 @@ function SideBar(props) {
 
     //console.log("localStorage.getItem(jwt)", token);
 
-    if (token == null || token == undefined) {
+    if (token === null || token === undefined) {
       setSignIn(false);
     } else if (token != null && token != undefined) {
       setSignIn(true);
@@ -310,10 +310,10 @@ function SideBar(props) {
                 >
                   <CreateStreamDialog className={classes.createStreamDialog} />
                   <CreateStream className={classes.createStream} />
-                  {/* {console.log("token is ", token)} */}
-                  {console.log(token.length)}
-                  {token.length > 0 && <Block signIn={true} />}
-                  {token.length === 0 && <Block signIn={false} />}
+                   {console.log("token is ", token)} 
+                  {console.log(token.length)} 
+                  { token!==null && <Block signIn={true} />}
+                  {token===null &&<Block signIn={false} />} 
                 </Grid>
               </Grid>
             </Grid>

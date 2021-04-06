@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const streamModel = require("../models/stream");
+const postModel = require("../models/post");
 let router = express.Router();
 const authJwt = require("./authenticateJwt");
 const e = require("express");
@@ -182,11 +183,11 @@ router.post("/addUser",(req,res)=>{
      }
      else{
        console.log('success');
-       console.log(doc);
+       console.log('doc is '+doc);
        if(doc!=null){
         const streamObj = doc;
         const member = {
-          name:"adithya"
+          name:userName
         };
  
         streamObj.members.push(member);
@@ -245,33 +246,120 @@ router.post("/addUser",(req,res)=>{
   //streamModel.findOne({_id:id}).
 });
 
-//Deletes user from a stream
+//Deletes user from a stream(works)
 router.delete("/deleteUser",(req,res)=>{
   var streamName = req.body.streamName;
   var userName = req.body.userName;
 
   console.log('Inside user delete route '+streamName+' '+userName);
   if(userName!=null){
-    streamModel.findOneAndDelete({name:streamName},(err,doc)=>{
+    console.log('Inside userName check!');
+    
+    streamModel.updateOne({"name":streamName},{$pull:{"members":{"name":userName}}},(err,doc)=>{
+
       if(err){
-        console.log('User delete error is '+err);
+        console.log(err)
       }
       else{
-        const streamObj = doc;
-        streamObj.members.remove({name:userName},(err,doc)=>{
-          if(err){
-            console.log('err is '+err);
-          }
-          else{
-            console.log('User delete doc is '+doc);
-            res.send(doc);
-          }
-        });
+        console.log('doc is '+JSON.stringify(doc));
+        console.log(userName+'deleted');
+        res.send(doc);
       }
-    });
+    })
 
   }
   
+});
+
+//Gets all users from a stream(works)
+router.get("/getStreamUsers",(req,res)=>{
+
+  var streamName = req.body.name;
+
+  streamModel.findOne({"name":streamName},(err,doc)=>{
+
+    if(err){
+      console.log(err);
+    }
+    else{
+      console.log('doc is '+JSON.stringify(doc));
+      res.send(doc.members);
+    }
+  });
+});
+
+//Add post to a stream
+router.post("/addPost",(req,res)=>{
+
+  var streamName = req.body.name;
+  var title = req.body.title;
+  var content = req.body.content;
+
+  var post = {
+    streamName,
+    title,
+    content
+  }
+
+streamModel.findOneAndUpdate({"name":streamName},{$push:{"posts":post}},(err,doc)=>{
+  
+  if(err){
+    console.log(err);
+  }
+  else{
+    console.log(JSON.stringify(doc));
+    res.send(doc);
+  }
+})
+});
+
+//Get All Posts For a Stream(works) in json array
+
+router.get("/getAllPosts",(req,res)=>{
+
+  var streamName = req.body.name;
+
+  streamModel.find({"name":streamName},(err,doc)=>{
+    if(err){
+      console.log(err);
+    }
+    else{
+      var streamTemp = doc[0];
+      console.log(doc);
+      console.log(streamTemp.posts);
+      var res1 = JSON.stringify(streamTemp.posts);
+      console.log(res1);
+      res.send(res1);
+      // streamTemp.posts.find({},(err,docs)=>{
+      //   if(err){
+      //     console.log(err);
+      //   }
+      //   else{
+      //     res.send(docs);
+      //   }
+      // })
+    }
+  })
+});
+
+
+
+//Delete All Posts with a jnown title(Works)
+router.delete("/deleteAllPosts",(req,res)=>{
+
+ 
+  var streamName = req.body.name;
+
+  streamModel.findOneAndUpdate({"name":streamName},{$pull:{"posts":{"title":"myTitle1"}}},(err,doc)=>{
+
+    if(err){
+      console.log(err);
+    }
+    else{
+      console.log(doc);
+      res.send(doc);
+    }
+  });
 });
 
 module.exports = router;

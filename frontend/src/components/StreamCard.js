@@ -28,10 +28,16 @@ function StreamCard(props) {
     if(title==undefined){
         title = "This is a stream card";
     }
+
+    const joinButtonClicked = (e) =>{
+
+        var temp = localStorage.getItem("userName");
+        console.log('join button clicked! '+temp);
+    }
     const classes = useStyles();
     return (
         
-        <Card className={classes.root} onClick={(e)=>(alert('cliidfjgi````'))}>
+        <Card className={classes.root} >
             <Typography class={classes.title} variant="h2">
                 {title}
             </Typography>
@@ -42,7 +48,7 @@ function StreamCard(props) {
             {/* <CardActions>
             
             </CardActions> */}
-            <Button variant="outlined"className={classes.joinButton}>
+            <Button variant="outlined"className={classes.joinButton} onClick={joinButtonClicked}>
                 Join
             </Button>
         </Card>
