@@ -288,20 +288,26 @@ router.get("/getStreamUsers",(req,res)=>{
   });
 });
 
-//Add post to a stream
+//Add post to a stream(works)
 router.post("/addPost",(req,res)=>{
 
-  var streamName = req.body.name;
-  var title = req.body.title;
-  var content = req.body.content;
+  var streamNameTemp = req.body.name;
+  var titleTemp = req.body.title;
+  var contentTemp = req.body.content;
 
-  var post = {
-    streamName,
-    title,
-    content
-  }
+  post = new postModel();
+  post.streamName = streamNameTemp;
+  post.title = titleTemp;
+  post.content = contentTemp;
 
-streamModel.findOneAndUpdate({"name":streamName},{$push:{"posts":post}},(err,doc)=>{
+
+  // var post = {
+  //   streamName,
+  //   title,
+  //   content
+  // }
+
+streamModel.findOneAndUpdate({"name":streamNameTemp},{$push:{"posts":post}},{new:true},(err,doc)=>{
   
   if(err){
     console.log(err);
@@ -311,6 +317,26 @@ streamModel.findOneAndUpdate({"name":streamName},{$push:{"posts":post}},(err,doc
     res.send(doc);
   }
 })
+});
+
+//Get a post from stream (works)
+
+router.get("/getPost",(req,res)=>{
+  
+  var streamName = req.body.name;
+  var titleNew = req.body.title;
+
+  streamModel.find({"name":streamName},{"posts":{$elemMatch:{"title":titleNew}}},(err,doc)=>{
+
+    if(err){
+      console.log(err);
+    }
+
+    else{
+      console.log(doc[0].posts[0]);
+      res.send(doc[0].posts[0]);
+    }
+  });
 });
 
 //Get All Posts For a Stream(works) in json array
@@ -325,6 +351,7 @@ router.get("/getAllPosts",(req,res)=>{
     }
     else{
       var streamTemp = doc[0];
+      console.log('doc is -->');
       console.log(doc);
       console.log(streamTemp.posts);
       var res1 = JSON.stringify(streamTemp.posts);
@@ -344,13 +371,13 @@ router.get("/getAllPosts",(req,res)=>{
 
 
 
-//Delete All Posts with a jnown title(Works)
-router.delete("/deleteAllPosts",(req,res)=>{
+//Delete a Post with a known title(Works)
+router.delete("/deletePost",(req,res)=>{
 
  
   var streamName = req.body.name;
-
-  streamModel.findOneAndUpdate({"name":streamName},{$pull:{"posts":{"title":"myTitle1"}}},(err,doc)=>{
+  var title = req.body.title;
+  streamModel.findOneAndUpdate({"name":streamName},{$pull:{"posts":{"title":title}}},{new:true},(err,doc)=>{
 
     if(err){
       console.log(err);
@@ -360,6 +387,24 @@ router.delete("/deleteAllPosts",(req,res)=>{
       res.send(doc);
     }
   });
+});
+
+//Delete All posts from a stream(works)
+
+router.delete("/deleteAllPosts",(req,res)=>{
+  
+  var streamName = req.body.name;
+  streamModel.findOneAndUpdate({"name":streamName},{$pull:{"posts":{}}},{new:true},(err,doc)=>{
+
+    if(err){
+      console.log(err);
+    }
+    else{
+      console.log(doc);
+      res.send(doc);
+    }
+  });
+
 });
 
 module.exports = router;

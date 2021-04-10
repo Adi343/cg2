@@ -18,7 +18,7 @@ const port = 5000;
 const mongoUrl = "mongodb://127.0.0.1/cgram";
 
 //mongoose.connect(MONGOURI);
-mongoose.connect(mongoUrl,{useNewUrlParser:true,useUnifiedTopology:true});
+mongoose.connect(mongoUrl,{useNewUrlParser:true,useUnifiedTopology:true,useFindAndModify:false});
 mongoose.connection.on("connected", () => {
   console.log("connected to mongodb local server");
 });
