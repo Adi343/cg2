@@ -407,4 +407,25 @@ router.delete("/deleteAllPosts",(req,res)=>{
 
 });
 
+//update post
+
+router.get("/updatePost/:postName",(req,res)=>{
+
+  var postName = req.params.postName;
+  console.log('req params ');
+  console.log(req.params.postName);
+
+  streamModel.findOneAndDelete(,(err,doc)=>{
+
+    if(err){
+      console.log('error is '+error);
+    }
+    else{
+      console.log(doc);
+      res.send(doc);
+    }
+  });
+  res.send(postName);
+});
+
 module.exports = router;
