@@ -13,6 +13,7 @@ import NotesGrid from "./components/NotesGrid";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 import SignUpDialog from "./components/SignUpDialog";
 import UserPage from "./components/UserPage";
+import dashboard from "./components/dashboard";
 
 function App() {
   const theme = createMuiTheme({
@@ -29,6 +30,7 @@ function App() {
       <Router >
         <Switch>
           <Route exact path="/userPage/" component={UserPage} />
+          <Route  path="/stream/:streamName" component = {dashboard} />
           <Route exact path="/" component={SideBar} />
         </Switch>
       </Router>

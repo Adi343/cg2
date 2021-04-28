@@ -7,6 +7,7 @@ import {TouchRipple} from '@material-ui/core/ButtonBase/TouchRipple';
 
 import CardActions from "@material-ui/core/CardActions"
 import { red } from "@material-ui/core/colors";
+import {useHistory} from "react-router-dom";
 
 const useStyles = makeStyles((theme)=>({
     root:{
@@ -23,6 +24,7 @@ const useStyles = makeStyles((theme)=>({
 }));
 function StreamCard(props) {
 
+    var history = useHistory();
     var title = props.title;
     //console.log(title);
     if(title==undefined){
@@ -34,10 +36,15 @@ function StreamCard(props) {
         var temp = localStorage.getItem("userName");
         console.log('join button clicked! '+temp);
     }
+
+    const streamCardClicked = (e) =>{
+        console.log(title+' card clicked!');
+        history.push('/stream/'+title);
+    }
     const classes = useStyles();
     return (
         
-        <Card className={classes.root} >
+        <Card className={classes.root} onClick={streamCardClicked}>
             <Typography class={classes.title} variant="h2">
                 {title}
             </Typography>

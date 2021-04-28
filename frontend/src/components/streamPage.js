@@ -35,6 +35,7 @@ function StreamPage() {
   const [posts, setPosts] = useState([]);
   const [createStream,setCreateStream] = useState(false);
   const [streamName,setStreamName] = useState('');
+  const [streamClicked,setStreamClicked] = useState(false);
   const temp = ['Foo','Bar'];
 
   useEffect(() => {
@@ -98,6 +99,8 @@ function StreamPage() {
     })}
 
     </div>
+
+    
   );
 }
 

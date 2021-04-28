@@ -341,9 +341,9 @@ router.get("/getPost",(req,res)=>{
 
 //Get All Posts For a Stream(works) in json array
 
-router.get("/getAllPosts",(req,res)=>{
+router.get("/:streamName/getAllPosts",(req,res)=>{
 
-  var streamName = req.body.name;
+  var streamName = req.params.streamName;
 
   streamModel.find({"name":streamName},(err,doc)=>{
     if(err){
@@ -407,25 +407,30 @@ router.delete("/deleteAllPosts",(req,res)=>{
 
 });
 
-//update post
+//update post title
 
-router.get("/updatePost/:postName",(req,res)=>{
+router.get("/:streamName/updatePostTitle/:postName",(req,res)=>{
 
   var postName = req.params.postName;
+  var streamName = req.params.streamName;
   console.log('req params ');
   console.log(req.params.postName);
+  console.log(req.params.streamName);
 
-  streamModel.findOneAndDelete(,(err,doc)=>{
+
+  streamModel.findByIdAndUpdate({"name":streamName},{$set:{'streams.$[streamName].posts.$[post].title':'titleNew'}},{arrayFilters:[{'name':streamName},{'title':postName}]},(err,docs)=>{
 
     if(err){
-      console.log('error is '+error);
+      console.log('update error is '+err);
     }
     else{
-      console.log(doc);
-      res.send(doc);
+      console.log(docs);
+      res.send(docs);
     }
   });
   res.send(postName);
 });
+
+//router
 
 module.exports = router;
