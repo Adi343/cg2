@@ -311,7 +311,7 @@ function SideBar(props) {
                   <CreateStreamDialog className={classes.createStreamDialog} />
                   <CreateStream className={classes.createStream} />
                    {console.log("token is ", token)} 
-                  {console.log(token.length)} 
+                  {/*console.log(token.length)*/} 
                   { token!==null && <Block signIn={true} />}
                   {token===null &&<Block signIn={false} />} 
                 </Grid>

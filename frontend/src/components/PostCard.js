@@ -1,6 +1,7 @@
 import React from "react";
 import Card from "@material-ui/core/Card";
 import {makeStyles} from "@material-ui/core/styles";
+import { Typography } from "@material-ui/core";
 
 
 const useStyles = makeStyles((theme)=>({
@@ -27,10 +28,10 @@ function PostCard(props){
 
         <div>
             <Card className={classes.rootCard}>
-            <h3>{props.title}</h3>
-            <p>
-              {props.content}
-            </p>
+            <h4>{props.title}</h4>
+            <Typography>
+                {props.content}                
+            </Typography>
             </Card>
             
         </div>
