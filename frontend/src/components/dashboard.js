@@ -48,15 +48,18 @@ export default function Dashboard() {
   }
 
   const handleTitleChange = (e) =>{
-    console.log(e.target.value);
+    setTitle(e.target.value);
   }
 
   const handleContentChange = (e) =>{
-    console.log(e.traget.value);
+    setContent(e.target.value);
   }
 
   const handleSubmit = () =>{
 
+    if(title!='' && content!=''){
+      
+    }
   }
 
 
@@ -101,6 +104,7 @@ export default function Dashboard() {
             size="normal"
             fullWidth="false"
             multiline
+            onChange={handleContentChange}
           />
 
         <DialogActions>
