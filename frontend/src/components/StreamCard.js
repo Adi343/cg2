@@ -31,13 +31,13 @@ function StreamCard(props) {
         title = "This is a stream card";
     }
 
-    const joinButtonClicked = (e) =>{
+    const joinButtonClicked = () =>{
 
         var temp = localStorage.getItem("userName");
         console.log('join button clicked! '+temp);
     }
 
-    const streamCardClicked = (e) =>{
+    const streamCardClicked = () =>{
         console.log(title+' card clicked!');
         history.push('/stream/'+title);
     }

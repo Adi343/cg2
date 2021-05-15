@@ -18,6 +18,7 @@ function CreateStreamDialog() {
   const handleClick = () => {
     //console.log("button pressed!");
     localStorage.setItem("jwt", "");
+    localStorage.clear();
     window.location.reload(true);
   };
 

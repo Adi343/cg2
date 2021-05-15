@@ -99,7 +99,7 @@ const myTheme = createMuiTheme({
       main: "#ffffff",
     },
     secondary: {
-      main: "#042819",
+      main: "#063f27",
     },
   },
 });

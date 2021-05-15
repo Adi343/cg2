@@ -167,11 +167,11 @@ router.get("/addUser",(req,res)=>{
 });
 
 //Adds user to stream (works)
-router.post("/addUser",(req,res)=>{
+router.post("/:streamName/addUser/:userName",(req,res)=>{
 
   //var StreamId = req.data.streamId;
-  var streamName = req.body.streamName;
-  var userName = req.body.userName;
+  var streamName = req.params.streamName;
+  var userName = req.params.userName;
   
   var temp = [];
   var Id = req.body.id;
@@ -289,9 +289,9 @@ router.get("/getStreamUsers",(req,res)=>{
 });
 
 //Add post to a stream(works)
-router.post("/addPost",(req,res)=>{
+router.post("/:streamName/addPost",(req,res)=>{
 
-  var streamNameTemp = req.body.name;
+  var streamNameTemp = req.params.streamName;
   var titleTemp = req.body.title;
   var contentTemp = req.body.content;
 

@@ -10,6 +10,10 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import PostCard from "./PostCard";
+import { Card } from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
+
+import NotebookCard from "./NotebookCard";
 const axios = require("axios").default;
 export default function Dashboard() {
 
@@ -21,7 +25,8 @@ export default function Dashboard() {
   const [openDialog,setOpenDialog] = useState(false);
   const [title,setTitle] = useState('');
   const [content,setContent] = useState('');
- 
+
+  var notebooks = ["Linear Control Systems","System On Chip Architecture","VLSI"];
   useEffect(() => {
     console.log("Use Effect called!");
     axios
@@ -43,6 +48,15 @@ export default function Dashboard() {
     setOpenDialog(true);
   }
 
+  const joinChipClicked = ()=>{
+    var userName = localStorage.getItem("userName");
+      axios.post("/stream/"+streamName+"/addUser/"+userName).then((response)=>{
+        console.log(response);
+      }).catch((error)=>{
+        console.log(error);
+      });
+  }
+
   const closeDialog = () =>{
     setOpenDialog(false);
   }
@@ -58,7 +72,21 @@ export default function Dashboard() {
   const handleSubmit = () =>{
 
     if(title!='' && content!=''){
-      
+
+      axios.post("/stream/"+streamName+"/addPost",{
+        'title':title,
+        'content':content
+      }).then((response) => {
+        //setPosts(response.posts);
+        console.log('response is '+JSON.stringify(response.data));
+        setPosts(response.data.posts);
+        closeDialog();
+
+      })
+      .catch((error) => {
+        //console.log("Finished!");
+        console.log("error is " + error);
+      });
     }
   }
 
@@ -67,7 +95,32 @@ export default function Dashboard() {
     <div>
       <h2>{streamName}</h2>
       <Typography>Stream Description goes here Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ultrices ut arcu non dignissim. Pellentesque commodo consequat erat id blandit. Donec pretium mattis tortor at tincidunt. Quisque sagittis nunc quam, non imperdiet augue ullamcorper molestie. Vivamus nec mi metus.</Typography>
-      <Chip label="test" clickable onClick={chipClicked} color="primary"/>
+      <Chip label="Post" clickable onClick={chipClicked} color="secondary" />
+      <Chip label="Join" clickable onClick={joinChipClicked} color="default" />
+
+      <Card>
+
+        <Grid
+          container
+          direction="row"
+          justify="flex-start"
+          alignItems="center"
+        >
+
+          {notebooks.map((notebook)=>{
+
+            //return <Card variant="outlined"><Typography variant="body1">{notebook}</Typography></Card>
+            return <NotebookCard title={notebook}/>
+          })}
+
+          <NotebookCard title={"Notebook1"}/>
+
+        
+       
+        </Grid>
+      </Card>
+      {console.log('posts')}
+      {console.log(posts)}
     {posts.length != 0 && posts.map((post)=>{
       console.log('Inside posts.forEach');
       console.log(post.content);
