@@ -27,10 +27,13 @@ export default function Dashboard() {
   const [title,setTitle] = useState('');
   const [content,setContent] = useState('');
   const [notebookTitle,setNotebookTitle] = useState('');
+  const [notebooks,setNotebooks] = useState([]);
 
-  var notebooks = ["Linear Control Systems","System On Chip Architecture","VLSI"];
+  var notebooks1 = ["Linear Control Systems","System On Chip Architecture","VLSI"];
   useEffect(() => {
     console.log("Use Effect called!");
+
+    
     axios
       .get("/stream/"+streamName+"/getAllPosts")
       .then((response) => {
@@ -43,6 +46,17 @@ export default function Dashboard() {
         //console.log("Finished!");
         console.log("error is " + error);
       });
+
+      axios.get("/stream/"+streamName+"/getAllNotebooks").then((response)=>{
+        console.log('response is '+JSON.stringify(response.data));
+        setNotebooks(response.data);
+  
+      }).catch((error)=>{
+        console.log('error is '+error);
+      });
+      
+
+    
 
   }, []); 
 
@@ -121,7 +135,7 @@ export default function Dashboard() {
           {notebooks.map((notebook)=>{
 
             //return <Card variant="outlined"><Typography variant="body1">{notebook}</Typography></Card>
-            return <NotebookCard title={notebook}/>
+            return <NotebookCard title={notebook.name}/>
           })}
 
           <NotebookCard title={"Notebook1"}/>
@@ -133,8 +147,8 @@ export default function Dashboard() {
       {console.log('posts')}
       {console.log(posts)}
     {posts.length != 0 && posts.map((post)=>{
-      console.log('Inside posts.forEach');
-      console.log(post.content);
+      //console.log('Inside posts.forEach');
+      //console.log(post.content);
       return <PostCard title={post.title} content= {post.content}/>
     })}
     {posts.length == 0 && <PostCard title="No Posts" content="This stream has no posts!"/>}
@@ -182,7 +196,7 @@ export default function Dashboard() {
     </Dialog>
 
     <Dialog open={openNotebookDialog} onBackdropClick={()=>{setOpenNotebookDialog()}}>
-    <DialogTitle>Create Post</DialogTitle>
+    <DialogTitle>Create Notebook</DialogTitle>
 
     <DialogContentText>
             Enter Title Of the notebook.

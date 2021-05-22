@@ -1,12 +1,12 @@
-const mongoose = rewquire("mongoose");
-const objectId = mongoose.Schema.Types.objectId;
+const mongoose = require("mongoose");
 
 const notebookSchema = new mongoose.Schema({
-    id:{
-        type:objectId,
+    
+    name:{
+        type:String,
         required:true
     },
-    name:{
+    stream:{
         type:String,
         required:true
     }

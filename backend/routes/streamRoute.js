@@ -432,6 +432,25 @@ router.get("/:streamName/updatePostTitle/:postName",(req,res)=>{
   res.send(postName);
 });
 
+//get notebooks for the stream
+
+router.get("/:streamName/getAllNotebooks",(req,res)=>{
+
+  var streamName = req.params.streamName;
+  let noteBooks = [];
+
+notebookModel.find({"stream":streamName},{"stream":{$elemMatch:streamName}},(err,doc)=>{
+
+  if(err){
+    console.log(err);
+  }
+  else{
+    console.log(doc);
+    res.send(doc);
+  }
+  });
+})
+
 //router
 
 module.exports = router;

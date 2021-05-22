@@ -9,11 +9,16 @@ const useStyles = makeStyles((theme)=>({
             background:"#f0f0f0",
             width:"150px",
             height:"200px",
-            margin:"10px"
+            margin:"10px",
+            color:"#BDBDBD",
+            textOverflow:"ellipsis"
     },
     text:{
         color:"#000000",
-        margin:"10px"
+        margin:"10px",
+        border:"10px",
+        wordWrap: "break-word",
+        align:"center"
     }
 
 }));
@@ -25,7 +30,7 @@ function NotebookCard(props) {
     return (
         <div>
             <Card className={classes.root}>
-                <Typography className={classes.text} variant="h5" paragraph={true}>{title}</Typography>
+                <Typography className={classes.text} variant='h7' nowrap paragraph display="inline">{title}</Typography>
                 </Card>            
         </div>
     )

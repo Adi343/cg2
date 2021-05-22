@@ -19,7 +19,7 @@ function PostCard(props){
 
 
 
-    console.log('PostCard props are '+JSON.stringify(props));
+    //console.log('PostCard props are '+JSON.stringify(props));
     const classes = useStyles();
 
     let title = props.title;
