@@ -1,8 +1,9 @@
 const mongoose = rewquire("mongoose");
+const objectId = mongoose.Schema.Types.objectId;
 
 const notebookSchema = new mongoose.Schema({
     id:{
-        type:Number,
+        type:objectId,
         required:true
     },
     name:{

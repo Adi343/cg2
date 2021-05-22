@@ -23,8 +23,10 @@ export default function Dashboard() {
 
   const [posts, setPosts] = useState([]);
   const [openDialog,setOpenDialog] = useState(false);
+  const [openNotebookDialog,setOpenNotebookDialog] = useState(false);
   const [title,setTitle] = useState('');
   const [content,setContent] = useState('');
+  const [notebookTitle,setNotebookTitle] = useState('');
 
   var notebooks = ["Linear Control Systems","System On Chip Architecture","VLSI"];
   useEffect(() => {
@@ -90,6 +92,14 @@ export default function Dashboard() {
     }
   }
 
+  const closeNotebookDialog = () =>{
+    setOpenNotebookDialog(false);
+  }
+
+  const handleNoteTitleChanged = (e) =>{
+    setNotebookTitle(e.target.value);
+  }
+
 
   return (
     <div>
@@ -97,6 +107,7 @@ export default function Dashboard() {
       <Typography>Stream Description goes here Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ultrices ut arcu non dignissim. Pellentesque commodo consequat erat id blandit. Donec pretium mattis tortor at tincidunt. Quisque sagittis nunc quam, non imperdiet augue ullamcorper molestie. Vivamus nec mi metus.</Typography>
       <Chip label="Post" clickable onClick={chipClicked} color="secondary" />
       <Chip label="Join" clickable onClick={joinChipClicked} color="default" />
+      <Chip label="Add NoteBook" color="default" onClick={()=>{setOpenNotebookDialog(true)}}/>
 
       <Card>
 
@@ -128,11 +139,10 @@ export default function Dashboard() {
     })}
     {posts.length == 0 && <PostCard title="No Posts" content="This stream has no posts!"/>}
 
-    <Dialog open={openDialog}>
+    <Dialog open={openDialog} onBackdropClick={()=>{setOpenDialog(false)}}>
       <DialogTitle>Create Post</DialogTitle>
       <DialogContentText>
-            To subscribe to this website, please enter your email address here. We will send updates
-            occasionally.
+            Enter Title and Content of the post.
           </DialogContentText>
 
           <TextField
@@ -170,6 +180,41 @@ export default function Dashboard() {
         </DialogActions>
     
     </Dialog>
+
+    <Dialog open={openNotebookDialog} onBackdropClick={()=>{setOpenNotebookDialog()}}>
+    <DialogTitle>Create Post</DialogTitle>
+
+    <DialogContentText>
+            Enter Title Of the notebook.
+          </DialogContentText>
+
+          <TextField
+            autofocus
+            margin="dense"
+            id="name"
+            label="Enter Title"
+            type="text"
+            variant="outlined"
+            size="small"
+            fullWidth="false"
+            onChange = {handleNoteTitleChanged}
+          />
+
+          
+
+        <DialogActions>
+          <Button onClick={closeNotebookDialog} >
+            Cancel
+          </Button>
+          <Button  color="primary">
+            Create
+          </Button>
+        </DialogActions>
+
+
+    </Dialog>
+
+
     </div>
   );
 }
