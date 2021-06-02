@@ -12,9 +12,20 @@ import Button from "@material-ui/core/Button";
 import PostCard from "./PostCard";
 import { Card } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
-
+import {makeStyles} from "@material-ui/core/styles";
+import {ThemeProvider} from "@material-ui/core";
+import darkTheme from "../darkTheme";
 import NotebookCard from "./NotebookCard";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Bar from "./Bar";
 const axios = require("axios").default;
+
+const useStyles = makeStyles((theme)=>({
+  streamTitle:{
+    backgroundColor:"#ffffff"
+  }
+}));
+
 export default function Dashboard() {
 
   //var streamName = props.streamName;
@@ -115,10 +126,13 @@ export default function Dashboard() {
   }
 
 
+  const classes = useStyles();
   return (
-    <div>
+  
+    <div className={classes.streamTitle}>
+      <Bar />
       <h2>{streamName}</h2>
-      <Typography>Stream Description goes here Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ultrices ut arcu non dignissim. Pellentesque commodo consequat erat id blandit. Donec pretium mattis tortor at tincidunt. Quisque sagittis nunc quam, non imperdiet augue ullamcorper molestie. Vivamus nec mi metus.</Typography>
+      <Typography >Stream Description goes here Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ultrices ut arcu non dignissim. Pellentesque commodo consequat erat id blandit. Donec pretium mattis tortor at tincidunt. Quisque sagittis nunc quam, non imperdiet augue ullamcorper molestie. Vivamus nec mi metus.</Typography>
       <Chip label="Post" clickable onClick={chipClicked} color="secondary" />
       <Chip label="Join" clickable onClick={joinChipClicked} color="default" />
       <Chip label="Add NoteBook" color="default" onClick={()=>{setOpenNotebookDialog(true)}}/>
@@ -230,5 +244,6 @@ export default function Dashboard() {
 
 
     </div>
+    
   );
 }

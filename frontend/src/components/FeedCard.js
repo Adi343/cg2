@@ -15,11 +15,13 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
+import ThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
+import darkTheme from "../darkTheme";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "100%",
-    background: "#E6E6FA",
+    width: "95%",
+    background: "#e8f5e9",
   },
   media: {
     height: 0,
@@ -53,6 +55,7 @@ function FeedCard(props) {
   };
 
   return (
+    
     <Card className={classes.root}>
       <CardHeader
         avatar={
@@ -90,19 +93,10 @@ function FeedCard(props) {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography>{props.name}</Typography>
-          <Typography paragraph>Method:</Typography>
-          <Typography paragraph>
-            Heat 1/2 cup of the broth in a pot until simmering, add saffron and
-            set aside for 10 minutes.
-          </Typography>
-          <Typography paragraph>
-            Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet
-            over medium-high heat. Add chicken, shrimp and chorizo, and cook,
-            stirring occasionally until lightly browned, 6 to 8 minutes.
-          </Typography>
+          
         </CardContent>
       </Collapse>
-    </Card>
+    </Card>    
   );
 }
 

@@ -17,6 +17,10 @@ const userSchema = new mongoose.Schema({
     type: "String",
     required: true,
   },
+  streams:{
+    type:Array,
+    required:false
+  }
 });
 
 module.exports = mongoose.model("userModel", userSchema, "users");

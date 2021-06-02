@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import FeedCard from "./FeedCard";
 import Button from "@material-ui/core/Button";
+import {ThemeProvider,Paper,Typography} from "@material-ui/core";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import darkTheme from "../darkTheme";
 
 const axios = require("axios").default;
  //const url = "https://jsonplaceholder.typicode.com/posts";
@@ -35,17 +38,19 @@ function Feed() {
   }, []);
 
   return (
-    <div color="#000000">
-      <h1>Feed</h1>
+    <div>
       <ul>
+      <Typography variant="h5" >Events</Typography>
         {users.map((user) => (
-          <div>
+          <Paper>
             <FeedCard title={user.title} content={user.content} thumbnail={user.thumbnail}/>
             {/* <li>{<FeedCard name={user.title} />}</li> */}
-          </div>
+          </Paper>
         ))}
       </ul>
-    </div>
+      </div>
+      
+    
   );
 }
 

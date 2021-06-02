@@ -58,7 +58,7 @@ function Block(props) {
     return (
       <div className={classes.blk2}>
         <NotificationsIcon
-          fontSize="large"
+          fontSize="default"
           onClick={(e) => notificationClicked()}
         />
         {/* <AccountCircle fontSize="large" onClick={accountButtonClicked} /> */}

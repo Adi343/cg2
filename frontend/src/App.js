@@ -10,7 +10,7 @@ import Test from "./components/test";
 import Test1 from "./components/test1";
 import NotesCard from "./components/notesCard";
 import NotesGrid from "./components/NotesGrid";
-import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
+import { createMuiTheme, MuiThemeProvider,ThemeProvider } from "@material-ui/core";
 import SignUpDialog from "./components/SignUpDialog";
 import UserPage from "./components/UserPage";
 import dashboard from "./components/dashboard";
@@ -18,15 +18,35 @@ import dashboard from "./components/dashboard";
 function App() {
   const theme = createMuiTheme({
     typography: {
-      fontFamily: `"Poppins", sans-serif`,
-      fontSize: 20,
+      fontFamily: `"Roboto", sans-serif`,
+      fontSize: 15,
       fontWeightLight: 100,
       fontWeightRegular: 100,
       fontWeightMedium: 100,
     },
+    palette:{
+      primary:{
+        main:"#1b5e20"
+      },
+      secondary:{
+        main:"#55470e"
+      }
+    }
   });
+
+  // const darkTheme = createMuiTheme({
+  //   typography: {
+  //     fontFamily: `"Poppins", sans-serif`,
+  //     fontSize: 20,
+  //     fontWeightLight: 100,
+  //     fontWeightRegular: 100,
+  //     fontWeightMedium: 100,
+  //   },
+    
+  // });
   return (
     <div>
+      <ThemeProvider theme={theme}>
       <Router >
         <Switch>
           <Route exact path="/userPage/" component={UserPage} />
@@ -35,6 +55,7 @@ function App() {
         </Switch>
       </Router>
       {/*<SideBar /> */}
+      </ThemeProvider>
     </div>
   );
 }

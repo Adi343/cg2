@@ -41,7 +41,7 @@ function CreateStream() {
       {/* <Button variant="outlined" onClick={handleClickOpen}>
         CreateStream
       </Button> */}
-      <CreateIcon onClick={handleClickOpen} />
+      <CreateIcon onClick={handleClickOpen} fontSize="default"/>
       <Dialog
         open={open}
         onClose={handleClose}

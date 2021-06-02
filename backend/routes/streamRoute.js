@@ -167,7 +167,7 @@ router.get("/addUser",(req,res)=>{
   //streamModel.findOne({_id:id}).
 });
 
-//Adds user to stream (works)
+//Adds user to stream (works)(TODO Add stream to user)
 router.post("/:streamName/addUser/:userName",(req,res)=>{
 
   //var StreamId = req.data.streamId;
@@ -200,6 +200,17 @@ router.post("/:streamName/addUser/:userName",(req,res)=>{
            res.send(JSON.stringify(doc));
           }
         });
+
+        //Adding stream to userModel(needs testing)
+        userModel.findOneAndUpdate({"name":userName},{"streams":{$set:{streamName}}},(err,docs)=>{
+
+          if(err){
+            console.log(err);
+          }
+          else{
+            console.log(docs);
+          }
+        })
 
        }
        

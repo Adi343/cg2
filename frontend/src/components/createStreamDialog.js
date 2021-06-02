@@ -27,7 +27,7 @@ function CreateStreamDialog() {
       {/* <Button variant="outlined" onClick={handleClickOpen}>
         CreateStream
       </Button> */}
-      <BuildIcon onClick={handleClick} />
+      <BuildIcon onClick={handleClick} fontSize="default"/>
     </div>
   );
 }

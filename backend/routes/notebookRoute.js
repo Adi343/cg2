@@ -7,28 +7,23 @@ router.get("/",(req,res)=>{
     res.send("Inside Notebook Route");
 });
 
-//Create new NoteBook
+//Create new NoteBook (checks for duplicates also)(works)
 
 router.post("/:streamName/:notebookName",(req,res)=>{
 
     const streamName = req.params.streamName;
     const notebookName = req.params.notebookName;
-    let check = '';
     //check if notebook exists in notebook collection and stream 
 
-    streamModel.find({"name":streamName},{"notebooks":{$elemMatch:{"name":notebookName}}},(err,doc)=>{
+     notebookModel.countDocuments({"name":notebookName},(err,docs)=>{
 
-        if(err){
-          console.log(err);
-        }
-    
-        else{
-          console.log(doc[0].notebookName);
-          check = doc[0].notebooks;
-        }
-      });
+      if(err){
+        console.log(err);
+      }
+      else{
+        //console.log('inside else');
+        if(docs==0){
 
-      if(check.length===0){
           const notebook = new notebookModel();
           notebook.name = notebookName;
           notebook.stream = streamName;
@@ -43,8 +38,13 @@ router.post("/:streamName/:notebookName",(req,res)=>{
           })
           res.send(notebook);
 
+        }
+        else{
+          res.send("Cannnot create");
+        }
       }
 
+     });
       
 
     });

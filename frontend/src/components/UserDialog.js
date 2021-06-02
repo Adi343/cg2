@@ -29,7 +29,7 @@ function UserDialog() {
   }
   return (
     <div>
-      <AccountCircle fontSize="large" onClick={handleClick} />
+      <AccountCircle fontSize="default" onClick={handleClick} />
       <Menu
         id="simple-menu"
         anchorEl={anchorEl}

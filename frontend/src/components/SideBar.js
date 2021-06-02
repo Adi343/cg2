@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useEffect } from "react";
+import React, { useState, Fragment, useEffect,useContext } from "react";
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -16,6 +16,10 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
+import Brightness4Icon from '@material-ui/icons/Brightness4';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import Paper from "@material-ui/core/Paper";
+import InboxOutlinedIcon from "@material-ui/icons/InboxOutlined";
 
 import {
   makeStyles,
@@ -37,13 +41,14 @@ import CreateStream from "./createStream";
 
 import HomeIcon from "@material-ui/icons/Home";
 import BookIcon from "@material-ui/icons/Book";
-import MessageIcon from "@material-ui/icons/Message";
-import SchoolIcon from "@material-ui/icons/School";
-
+import BookTwoToneIcon from '@material-ui/icons/BookTwoTone';
+import ForumOutlinedIcon from '@material-ui/icons/ForumOutlined';
+import SchoolOutlinedIcon from '@material-ui/icons/SchoolOutlined';
 import Grid from "@material-ui/core/Grid";
 import GridItem from "@material-ui/core/Grid";
 import StreamPage from "./streamPage";
 import UserHomePage from "./UserHomePage";
+import darkTheme from "../darkTheme"
 const drawerWidth = 200;
 
 const useStyles = makeStyles((theme) => ({
@@ -64,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   title: {
-    color: "black",
+    
     fontWeight: 700,
     fontFamily: "Poppins",
   },
@@ -89,6 +94,55 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     flexGrow: 1,
+    //default value of spacing is
+    padding: theme.spacing(0),
+  },
+}));
+
+const useDarkStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+    fontFamily: "Poppins",
+  },
+  drawer: {
+    [theme.breakpoints.up("sm")]: {
+      width: drawerWidth,
+      flexShrink: 0,
+    },
+  },
+  appBar: {
+    [theme.breakpoints.up("sm")]: {
+      width: `calc(100% - ${drawerWidth}px)`,
+      marginLeft: drawerWidth,
+    },
+  },
+  title: {
+    color: "white",
+    fontWeight: 700,
+    fontFamily: "Poppins",
+  },
+  searchBox: {},
+  signInDialog: {},
+  signUpDialog: {},
+  block: {},
+  createStreamDialog: {},
+  createStream: {},
+
+  menuButton: {
+    marginRight: theme.spacing(2),
+    [theme.breakpoints.up("sm")]: {
+      display: "none",
+    },
+  },
+  // necessary for content to be below app bar
+  toolbar: theme.mixins.toolbar,
+  color: "#c4c0c1",
+  drawerPaper: {
+    width: drawerWidth,
+    
+  },
+  content: {
+    flexGrow: 1,
     padding: theme.spacing(3),
   },
 }));
@@ -99,22 +153,60 @@ const myTheme = createMuiTheme({
       main: "#ffffff",
     },
     secondary: {
-      main: "#063f27",
+      main: "#000000",
     },
   },
 });
+
+// const darkTheme = createMuiTheme({
+//   palette: {
+
+//     type:'dark',
+//     primary: {
+//       main: "#000000",
+//     },
+//     secondary: {
+//       main: "#063f27",
+//     },
+//   },
+// });
 
 function SideBar(props) {
   //const [window, setWindow] = useState(0);
   const [menuItem, setMenuItem] = useState(0);
   const { window } = props;
   const classes = useStyles();
-  const theme = useTheme();
+  const theme = useTheme(darkTheme);
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [comp, changeComp] = React.useState(0);
   const [signIn, setSignIn] = React.useState("no");
+  // var prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+  // const [darkMode,setDarkMode] = useState(prefersDarkMode);
   var token = localStorage.getItem("jwt");
   var id = localStorage.getItem("id");
+
+  
+
+  // const theme1 = React.useMemo(() =>
+  //   createMuiTheme({
+  //     palette: {
+  //       type: darkMode ? "dark" : "light",
+  //       primary: {
+  //         main: '#ffffff',
+  //       },
+  //       secondary: {
+  //         main: "#063f27",
+  //       }
+  //     }
+  //   })
+  // );
+  // useEffect(() => {
+  //   setDarkMode(prefersDarkMode);
+  // }, [prefersDarkMode]);
+ 
+  
+
+
 
 
   useEffect(() => {
@@ -199,7 +291,7 @@ function SideBar(props) {
   };
   function handleNavBarItems(item) {
     switch (item) {
-      case "Feed":
+      case "Events":
         // return <Feed />;
         setMenuItem(0);
         break;
@@ -229,20 +321,32 @@ function SideBar(props) {
 
   const createStream = (e) => {};
 
+ 
+
+
+
+  function setTheme  () {
+    // setDarkMode(!darkMode);
+    // console.log('darkMode is '+darkMode)
+  };
+
+ 
+
   const drawer = (
     <div>
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        {["Feed", "Notes", "Messages", "Classes", "Streams"].map(
+        {["Events", "Notes", "Messages", "Classes", "Streams"].map(
           (text, index) => (
             <ListItem button key={text} onClick={() => handleNavBarItems(text)}>
               <ListItemIcon>
                 {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                {text === "Feed" && <HomeIcon htmlColor="#628744" />}
-                {text === "Notes" && <BookIcon />}
-                {text === "Messages" && <MessageIcon />}
-                {text === "Classes" && <SchoolIcon />}
+                {text === "Events" && <HomeIcon color="primary" />}
+                {text === "Notes" && <BookIcon color="secondary"/>}
+                {text === "Messages" && <ForumOutlinedIcon color="secondary" />}
+                {text === "Classes" && <SchoolOutlinedIcon color="secondary"/>}
+                {text === "Streams" && <InboxOutlinedIcon color="secondary"/>}
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
@@ -268,7 +372,7 @@ function SideBar(props) {
 
   return (
     <div className={classes.root}>
-      <CssBaseline />
+      
       <ThemeProvider theme={myTheme}>
         <AppBar className={classes.appBar}>
           <Toolbar className={classes.toolbar}>
@@ -308,6 +412,7 @@ function SideBar(props) {
                   justify="flex-end"
                   direction="row"
                 >
+                  <Brightness4Icon fontSize="default" onClick={setTheme}/>
                   <CreateStreamDialog className={classes.createStreamDialog} />
                   <CreateStream className={classes.createStream} />
                    {console.log("token is ", token)} 
