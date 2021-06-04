@@ -6,12 +6,12 @@ import Divider from "@material-ui/core/Divider";
 import Drawer from "@material-ui/core/Drawer";
 import Hidden from "@material-ui/core/Hidden";
 import IconButton from "@material-ui/core/IconButton";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
+import BookOutlinedIcon from '@material-ui/icons/BookOutlined';
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import MailIcon from "@material-ui/icons/Mail";
+
 import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -38,7 +38,7 @@ import { red } from "@material-ui/core/colors";
 import Block from "./Block";
 import CreateStreamDialog from "./createStreamDialog";
 import CreateStream from "./createStream";
-
+import EventOutlinedIcon from '@material-ui/icons/EventOutlined';
 import HomeIcon from "@material-ui/icons/Home";
 import BookIcon from "@material-ui/icons/Book";
 import BookTwoToneIcon from '@material-ui/icons/BookTwoTone';
@@ -342,8 +342,8 @@ function SideBar(props) {
             <ListItem button key={text} onClick={() => handleNavBarItems(text)}>
               <ListItemIcon>
                 {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                {text === "Events" && <HomeIcon color="primary" />}
-                {text === "Notes" && <BookIcon color="secondary"/>}
+                {text === "Events" && <EventOutlinedIcon color="primary" />}
+                {text === "Notes" && <BookOutlinedIcon color="secondary"/>}
                 {text === "Messages" && <ForumOutlinedIcon color="secondary" />}
                 {text === "Classes" && <SchoolOutlinedIcon color="secondary"/>}
                 {text === "Streams" && <InboxOutlinedIcon color="secondary"/>}
