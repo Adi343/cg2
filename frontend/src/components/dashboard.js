@@ -23,6 +23,9 @@ const axios = require("axios").default;
 const useStyles = makeStyles((theme)=>({
   streamTitle:{
     backgroundColor:"#ffffff"
+  },
+  dialog:{
+    
   }
 }));
 
@@ -39,8 +42,12 @@ export default function Dashboard() {
   const [content,setContent] = useState('');
   const [notebookTitle,setNotebookTitle] = useState('');
   const [notebooks,setNotebooks] = useState([]);
+  const [createEvent,setCreateEvent] = useState(false);
+  const [eventTitle,setEventTitle] = useState('');
+  const [eventContent,setEventContent] = useState('');
+  const [eventTime,setEventTime] = useState('');
 
-  var notebooks1 = ["Linear Control Systems","System On Chip Architecture","VLSI"];
+
   useEffect(() => {
     console.log("Use Effect called!");
 
@@ -125,6 +132,46 @@ export default function Dashboard() {
     setNotebookTitle(e.target.value);
   }
 
+  const createNotebook = () =>{
+
+    if(notebookTitle=='' || notebookTitle==undefined){
+      alert('empty notebok title');
+    }
+    else{
+      axios.post('/notebook/'+streamName+'/'+notebookTitle).then((response)=>{
+        console.log(response);
+      })
+    }
+  }
+
+  const eventDialog = (e)=>{
+    setCreateEvent(!createEvent);
+  }
+
+  const createEventDialog = ()=>{
+    alert('create event!')
+  }
+
+  const closeEventDialog = () =>{
+    setCreateEvent(false);
+  }
+
+  const handleEventTitleChange = (e) =>{
+    setEventTitle(e.target.value);
+  }
+
+  const handleEventContentChange = (e) =>{
+    setEventContent(e.target.value);
+  }
+
+  const handleEventTimeChange = (e) =>{
+    setEventTime(e.target.value);
+  }
+
+  const handleCreateEvent = () =>{
+    
+  }
+
 
   const classes = useStyles();
   return (
@@ -135,8 +182,8 @@ export default function Dashboard() {
       <Typography >Stream Description goes here Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ultrices ut arcu non dignissim. Pellentesque commodo consequat erat id blandit. Donec pretium mattis tortor at tincidunt. Quisque sagittis nunc quam, non imperdiet augue ullamcorper molestie. Vivamus nec mi metus.</Typography>
       <Chip label="Post" clickable onClick={chipClicked} color="secondary" />
       <Chip label="Join" clickable onClick={joinChipClicked} color="default" />
-      <Chip label="Add NoteBook" color="default" onClick={()=>{setOpenNotebookDialog(true)}}/>
-
+      <Chip label="Create NoteBook" color="default" onClick={()=>{setOpenNotebookDialog(true)}}/>
+      <Chip label="Create Event" color="secondary" onClick={eventDialog}/>
       <Card>
 
         <Grid
@@ -234,12 +281,66 @@ export default function Dashboard() {
           <Button onClick={closeNotebookDialog} >
             Cancel
           </Button>
-          <Button  color="primary">
+          <Button  color="primary" onClick={createNotebook}>
             Create
           </Button>
         </DialogActions>
 
 
+    </Dialog>
+
+    <Dialog open={createEvent} className={classes.dialog}>  
+    <DialogTitle>Create Event</DialogTitle>
+
+          <TextField
+            autofocus
+            margin="dense"
+            id="name"
+            label="Enter Title"
+            type="text"
+            variant="outlined"
+            size="small"
+            fullWidth="false"
+            onChange={handleEventTimeChange}
+          />
+
+          <TextField
+            autofocus
+            margin="dense"
+            id="content"
+            label="Enter Content"
+            type="text"
+            variant="outlined"
+            size="normal"
+            fullWidth="false"
+            multiline
+            onChange={handleEventContentChange}
+          />
+
+<form className={classes.container} noValidate>
+  <TextField
+    id="datetime-local"
+    label="Event Time"
+    type="datetime-local"
+    defaultValue=""
+    className={classes.textField}
+    InputLabelProps={{
+      shrink: true,
+    }}
+    onChange={handleEventTimeChange}
+  />
+</form>
+
+
+
+        <DialogActions>
+          <Button onClick={closeEventDialog} >
+            Cancel
+          </Button>
+          <Button  color="primary" onClick={createEventDialog}>
+            Post
+          </Button>
+        </DialogActions>
     </Dialog>
 
 
