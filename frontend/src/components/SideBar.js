@@ -49,7 +49,7 @@ import GridItem from "@material-ui/core/Grid";
 import StreamPage from "./streamPage";
 import UserHomePage from "./UserHomePage";
 import darkTheme from "../darkTheme"
-const drawerWidth = 200;
+const drawerWidth = 175;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -66,6 +66,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("sm")]: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
+      
     },
   },
   title: {

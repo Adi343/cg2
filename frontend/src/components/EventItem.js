@@ -8,15 +8,15 @@ const useStyles = makeStyles({
 
     root:{
         width:'100%',
-        backgroundColor:'#1b5e20'
+        backgroundColor:'#E0E0E0'
 
     },
     title:{
-        color:'#ffffff',
+        color:'#1b5e20',
         margin:'15px'
     },
     description:{
-        color:'#ffffff',
+        color:'#1b5e20',
         margin:'15px'
     },
     btn:{

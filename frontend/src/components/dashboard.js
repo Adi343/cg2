@@ -139,7 +139,9 @@ export default function Dashboard() {
     }
     else{
       axios.post('/notebook/'+streamName+'/'+notebookTitle).then((response)=>{
-        console.log(response);
+        if(response=="cannot create"){
+          alert('cannot create notebook ');
+        }
       })
     }
   }
@@ -169,7 +171,24 @@ export default function Dashboard() {
   }
 
   const handleCreateEvent = () =>{
-    
+
+    if(eventTitle!='' && eventContent!='' && eventTime!=''){
+      const data = {
+        'title':eventTitle,
+        'content':eventContent,
+        'eventTime':eventTime,
+        'streamName':streamName
+      }
+      axios.post('/event/createEvent',data).then((response)=>{
+        //console.log('axios response is '+response.data);
+        setCreateEvent(false);
+      })
+    }
+    else{
+      alert('enter full details!');
+    }
+
+   
   }
 
 
@@ -289,7 +308,7 @@ export default function Dashboard() {
 
     </Dialog>
 
-    <Dialog open={createEvent} className={classes.dialog}>  
+    <Dialog open={createEvent} className={classes.dialog} onBackdropClick={closeEventDialog}>  
     <DialogTitle>Create Event</DialogTitle>
 
           <TextField
@@ -301,7 +320,7 @@ export default function Dashboard() {
             variant="outlined"
             size="small"
             fullWidth="false"
-            onChange={handleEventTimeChange}
+            onChange={handleEventTitleChange}
           />
 
           <TextField
@@ -337,7 +356,7 @@ export default function Dashboard() {
           <Button onClick={closeEventDialog} >
             Cancel
           </Button>
-          <Button  color="primary" onClick={createEventDialog}>
+          <Button  color="primary" onClick={handleCreateEvent}>
             Post
           </Button>
         </DialogActions>
