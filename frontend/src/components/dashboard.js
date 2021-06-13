@@ -196,7 +196,7 @@ export default function Dashboard() {
   return (
   
     <div className={classes.streamTitle}>
-      <Bar />
+      {/* <Bar /> */}
       <h2>{streamName}</h2>
       <Typography >Stream Description goes here Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ultrices ut arcu non dignissim. Pellentesque commodo consequat erat id blandit. Donec pretium mattis tortor at tincidunt. Quisque sagittis nunc quam, non imperdiet augue ullamcorper molestie. Vivamus nec mi metus.</Typography>
       <Chip label="Post" clickable onClick={chipClicked} color="secondary" />

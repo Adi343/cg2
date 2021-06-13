@@ -61,6 +61,7 @@ const useStyles = makeStyles((theme) => ({
       width: drawerWidth,
       flexShrink: 0,
     },
+    
   },
   appBar: {
     [theme.breakpoints.up("sm")]: {
@@ -73,6 +74,7 @@ const useStyles = makeStyles((theme) => ({
     
     fontWeight: 700,
     fontFamily: "Poppins",
+    color:'#D50000'
   },
   searchBox: {},
   signInDialog: {},
@@ -393,17 +395,17 @@ function SideBar(props) {
               justify="space-between"
             >
               <Grid item xs={3}>
-                <Typography variant="h5" noWrap className={classes.title}>
+                <Typography variant="h5"  className={classes.title}>
                   CollegeGram
                 </Typography>
               </Grid>
 
               <Grid item xs={3}>
-                <TextField
+                {/* <TextField
                   variant="filled"
                   placeholder="Search"
                   className={classes.searchBox}
-                />
+                /> */}
               </Grid>
 
               <Grid item xs={6}>

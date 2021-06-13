@@ -202,7 +202,7 @@ router.post("/:streamName/addUser/:userName",(req,res)=>{
         });
 
         //Adding stream to userModel(needs testing)
-        userModel.findOneAndUpdate({"name":userName},{"streams":{$set:{streamName}}},(err,docs)=>{
+        userModel.findOneAndUpdate({"name":userName},{"$addToSet":{"streams":{streamName}}},(err,docs)=>{
 
           if(err){
             console.log(err);

@@ -56,7 +56,7 @@ function Feed() {
      
       <ul>
       <Typography variant="h5">Events</Typography>
-      <Carousel>
+      <Carousel autoPlay={false}>
             {
                 items.map( (item, i) => <EventItem key={i} item={item} /> )
             }
