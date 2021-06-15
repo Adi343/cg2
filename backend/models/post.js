@@ -2,10 +2,7 @@ const mongoose = require("mongoose");
 const {ObjectId} = mongoose.Schema.Types;
 
 const postSchema = new mongoose.Schema({
-    id:{
-        type:Number,
-        required:true
-    },
+    
     streamName:{
         type:String,
         required:true

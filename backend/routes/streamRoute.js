@@ -9,6 +9,7 @@ const { db } = require("../models/stream");
 const userModel = require("../models/userModel");
 const { json } = require("express");
 const notebookModel = require("../models/notebook");
+const { ObjectID } = require("mongodb");
 
 router.get("/", (req, res) => {
   var data = ['abcd'];
@@ -319,16 +320,29 @@ router.post("/:streamName/addPost",(req,res)=>{
   //   content
   // }
 
-streamModel.findOneAndUpdate({"name":streamNameTemp},{$push:{"posts":post}},{new:true},(err,doc)=>{
+// streamModel.findOneAndUpdate({"name":streamNameTemp},{$push:{"posts":post}},{new:true},(err,doc)=>{
   
+//   if(err){
+//     console.log(err);
+//   }
+//   else{
+//     console.log(JSON.stringify(doc));
+//     res.send(doc);
+//   }
+// })
+
+post.save((err,doc)=>{
+
   if(err){
-    console.log(err);
+    console.log("post save error is "+err);
   }
   else{
-    console.log(JSON.stringify(doc));
-    res.send(doc);
+    console.log("post saved!"+doc);
+    res.send("post added!");
   }
 })
+
+
 });
 
 //Get a post from stream (works)

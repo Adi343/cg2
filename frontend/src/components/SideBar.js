@@ -418,7 +418,7 @@ function SideBar(props) {
                   <Brightness4Icon fontSize="default" onClick={setTheme}/>
                   <CreateStreamDialog className={classes.createStreamDialog} />
                   <CreateStream className={classes.createStream} />
-                   {console.log("token is ", token)} 
+                   {/*console.log("token is ", token)*/} 
                   {/*console.log(token.length)*/} 
                   { token!==null && <Block signIn={true} />}
                   {token===null &&<Block signIn={false} />} 

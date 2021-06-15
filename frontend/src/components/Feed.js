@@ -8,7 +8,6 @@ import Carousel from 'react-material-ui-carousel';
 import EventItem from './EventItem';
 
 const axios = require("axios").default;
- //const url = "https://jsonplaceholder.typicode.com/posts";
 const url = "/post"
 function Feed() {
   const [isLoading, setIsLoading] = useState(false);
@@ -28,8 +27,11 @@ function Feed() {
 ]
 
   function getData() {
+
+    var streamName = "stream1";
+    var urlNew = url+"/"+streamName;
     axios
-      .get(url)
+      .get(urlNew)
       .then(function (response) {
         // handle success
         console.log('response.data is '+response.data);
@@ -61,6 +63,7 @@ function Feed() {
                 items.map( (item, i) => <EventItem key={i} item={item} /> )
             }
         </Carousel>
+        {console.log("users data is "+JSON.stringify(users))}
         {users.map((user) => (
           <Paper>
             <FeedCard title={user.title} content={user.content} thumbnail={user.thumbnail}/>
