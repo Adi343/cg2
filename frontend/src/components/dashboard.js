@@ -22,7 +22,8 @@ const axios = require("axios").default;
 
 const useStyles = makeStyles((theme)=>({
   streamTitle:{
-    backgroundColor:"#ffffff"
+    backgroundColor:"#ffffff",
+    width:"80%"
   },
   dialog:{
     
@@ -53,7 +54,7 @@ export default function Dashboard() {
 
     
     axios
-      .get("/stream/"+streamName+"/getAllPosts")
+      .get("/post/"+streamName+"/getAllPosts")
       .then((response) => {
         //setPosts(response.data);
         console.log('response is '+JSON.stringify(response.data));
@@ -77,6 +78,21 @@ export default function Dashboard() {
     
 
   }, []); 
+
+  useEffect(()=>{
+    axios
+      .get("/post/"+streamName+"/getAllPosts")
+      .then((response) => {
+        //setPosts(response.data);
+        console.log('response is '+JSON.stringify(response.data));
+        setPosts(response.data);
+
+      })
+      .catch((error) => {
+        //console.log("Finished!");
+        console.log("error is " + error);
+      });
+  },[openDialog]);
 
   const chipClicked = ()=>{
     setOpenDialog(true);
@@ -112,8 +128,9 @@ export default function Dashboard() {
         'content':content
       }).then((response) => {
         //setPosts(response.posts);
-        console.log('response is '+JSON.stringify(response.data));
-        setPosts(response.data.posts);
+        console.log("response is "+response);
+        // console.log('response is '+JSON.stringify(response.data));
+        //setPosts(response.data.posts);
         closeDialog();
 
       })
@@ -218,7 +235,7 @@ export default function Dashboard() {
             return <NotebookCard title={notebook.name}/>
           })}
 
-          <NotebookCard title={"Notebook1"}/>
+          {/* <NotebookCard title={"Notebook1"}/> */}
 
         
        
@@ -229,7 +246,7 @@ export default function Dashboard() {
     {posts.length != 0 && posts.map((post)=>{
       //console.log('Inside posts.forEach');
       //console.log(post.content);
-      return <PostCard title={post.title} content= {post.content}/>
+      return <PostCard title={post.title} content= {post.content} id={post._id}/>
     })}
     {posts.length == 0 && <PostCard title="No Posts" content="This stream has no posts!"/>}
 

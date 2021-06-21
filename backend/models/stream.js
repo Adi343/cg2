@@ -20,6 +20,11 @@ const streamSchema = new mongoose.Schema({
   notebooks:{
     type:Array,
     required:false
+  },
+
+  key:{
+    type:String,
+    required:false
   }
 
   // moderators:{

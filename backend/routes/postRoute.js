@@ -138,4 +138,26 @@ router.delete("/:streamName/deleteAllPosts",(req,res)=>{
   });
 
 });
+
+//update post
+
+router.put("/:streamName/updatePost",(req,res)=>{
+
+  var streamName = req.params.streamName;
+  var title = req.body.title;
+  var content = req.body.content;
+  var id = mongoose.mongo.ObjectID(req.body._id);
+
+  postModel.findOneAndUpdate({"streamName":streamName,"_id":id},{"title":title,"content":content},{"upsert":true},(err,docs)=>{
+
+    if(err){
+      console.log(err);
+    }
+    else{
+      console.log(docs);
+      res.send(docs);
+    }
+  
+  });
+});
 module.exports = router;

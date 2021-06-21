@@ -202,8 +202,14 @@ router.post("/:streamName/addUser/:userName",(req,res)=>{
           }
         });
 
+        var role = "testRole";
+        const data = {
+          streamName,
+          role
+        };
+
         //Adding stream to userModel(needs testing)
-        userModel.findOneAndUpdate({"name":userName},{"$addToSet":{"streams":{streamName}}},(err,docs)=>{
+        userModel.findOneAndUpdate({"name":userName},{"$addToSet":{"streams":{data}}},(err,docs)=>{
 
           if(err){
             console.log(err);
