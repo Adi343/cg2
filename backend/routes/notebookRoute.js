@@ -49,5 +49,43 @@ router.post("/:streamName/:notebookName",(req,res)=>{
 
     });
 
+    //get notebooks for the stream
+
+router.get("/:streamName/getAllNotebooks",(req,res)=>{
+
+  var streamName = req.params.streamName;
+  let noteBooks = [];
+
+notebookModel.find({"stream":streamName},{"stream":{$elemMatch:streamName}},(err,doc)=>{
+
+  if(err){
+    console.log(err);
+  }
+  else{
+    console.log(doc);
+    res.send(doc);
+  }
+  });
+})
+
+   //get All notebooks
+
+   router.get("/getAllNotebooks",(req,res)=>{
+
+    let noteBooks = [];
+
+    notebookModel.find({},(err,docs)=>{
+
+      if(err){
+        console.log(err);
+      }
+      else{
+        res.send(docs);
+      }
+    })
+  })
+  
+
+
 
 module.exports = router;

@@ -11,7 +11,11 @@ const useStyles = makeStyles((theme)=>({
             height:"200px",
             margin:"10px",
             color:"#BDBDBD",
-            textOverflow:"ellipsis"
+            textOverflow:"ellipsis",
+            display:"flex",
+            flexDirection:"column",
+            justifyContent:"space-between"
+            
     },
     text:{
         color:"#000000",
@@ -27,10 +31,12 @@ function NotebookCard(props) {
 
     const classes = useStyles();
     const title = props.title;
+    const streamName = props.stream;
     return (
         <div>
             <Card className={classes.root}>
                 <Typography className={classes.text} variant='h7' nowrap paragraph display="inline">{title}</Typography>
+                <Typography variant="h9">{streamName} </Typography>
                 </Card>            
         </div>
     )
